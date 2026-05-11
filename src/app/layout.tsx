@@ -9,10 +9,19 @@ const inter = Inter({
   display: "swap",
 });
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL
+  ? process.env.NEXT_PUBLIC_SITE_URL
+  : process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : "http://localhost:3000";
+
+const DESCRIPTION =
+  "Engenharia de alta performance em galpões logísticos e indústrias. Sede no Espírito Santo, em expansão nacional.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "AEX | Inteligência Construtiva",
-  description:
-    "Engenharia, gestão de obras de alta complexidade e soluções integradas em construção civil. Galpões logísticos, indústrias e obras comerciais no Espírito Santo.",
+  description: DESCRIPTION,
   keywords: [
     "AEX",
     "construção civil",
@@ -26,10 +35,24 @@ export const metadata: Metadata = {
   authors: [{ name: "AEX | Inteligência Construtiva" }],
   openGraph: {
     title: "AEX | Inteligência Construtiva",
-    description:
-      "Engenharia de alta performance no Espírito Santo. +450.000 m² produzidos.",
+    description: DESCRIPTION,
     type: "website",
     locale: "pt_BR",
+    siteName: "AEX | Inteligência Construtiva",
+    images: [
+      {
+        url: "/logo.png",
+        width: 1024,
+        height: 1024,
+        alt: "AEX | Inteligência Construtiva",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary",
+    title: "AEX | Inteligência Construtiva",
+    description: DESCRIPTION,
+    images: ["/logo.png"],
   },
 };
 
