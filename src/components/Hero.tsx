@@ -1,0 +1,152 @@
+"use client";
+
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowRight, MessageSquare } from "lucide-react";
+
+const STATS = [
+  { value: "+450.000", unit: "m²", label: "produzidos" },
+  { value: "+15", unit: "", label: "obras entregues" },
+  { value: "Brasil", unit: "", label: "Sede no Espírito Santo, em expansão nacional" },
+];
+
+export default function Hero() {
+  const reduce = useReducedMotion();
+
+  return (
+    <section
+      id="hero"
+      className="relative flex h-screen min-h-[680px] w-full items-center overflow-hidden bg-ink"
+    >
+      {/* Architectural grid background */}
+      <div
+        aria-hidden
+        className="absolute inset-0 bg-grid-architectural bg-grid opacity-60"
+      />
+      <div
+        aria-hidden
+        className="absolute inset-0 bg-radial-fade"
+      />
+      {/* Diagonal accent line — echoes the logo swoosh */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute right-[-10%] top-[12%] h-[2px] w-[40%] rotate-[-25deg] bg-gradient-to-r from-transparent via-accent to-transparent opacity-60"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -bottom-32 -left-32 h-96 w-96 rounded-full bg-accent/10 blur-3xl"
+      />
+
+      <div className="container-aex relative z-10 grid w-full grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-8">
+        <div className="lg:col-span-8">
+          <motion.div
+            initial={{ opacity: 0, y: reduce ? 0 : 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="flex items-center gap-3"
+          >
+            <span className="h-px w-10 bg-accent" />
+            <span className="eyebrow">Engenharia · Gestão · Construção</span>
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: reduce ? 0 : 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-6 max-w-4xl text-4xl font-bold leading-[1.05] tracking-tightest text-bone md:text-6xl lg:text-7xl"
+          >
+            Inteligência construtiva para{" "}
+            <span className="relative inline-block">
+              <span className="text-accent">galpões logísticos</span>
+              <span
+                aria-hidden
+                className="absolute -bottom-1 left-0 h-[3px] w-full rounded-sm bg-accent/40"
+              />
+            </span>{" "}
+            e indústrias.
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: reduce ? 0 : 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-6 max-w-2xl text-base text-steel-200 md:text-lg"
+          >
+            Engenharia de alta performance, do Espírito Santo para o Brasil.
+            Planejamento estratégico, metodologias modernas e execução sem
+            desvios — para obras de alta complexidade.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: reduce ? 0 : 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-10 flex flex-wrap items-center gap-3"
+          >
+            <a href="#obras" className="btn-primary group">
+              Ver obras
+              <ArrowRight
+                size={16}
+                className="transition-transform group-hover:translate-x-1"
+              />
+            </a>
+            <a
+              href="https://wa.me/5527999559800?text=Olá%20AEX!%20Vim%20pelo%20site%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-outline group"
+            >
+              <MessageSquare size={16} />
+              Falar com a equipe
+            </a>
+          </motion.div>
+        </div>
+
+        {/* Stats column */}
+        <motion.div
+          initial={{ opacity: 0, y: reduce ? 0 : 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="lg:col-span-4 lg:self-end"
+        >
+          <div className="border-l-2 border-accent/40 pl-6">
+            {STATS.map((s, i) => (
+              <div
+                key={s.label}
+                className={`flex flex-col py-3 ${
+                  i !== STATS.length - 1 ? "border-b border-white/5" : ""
+                }`}
+              >
+                <span className="flex items-baseline gap-2">
+                  <span className="text-3xl font-bold tracking-tightest text-bone md:text-4xl">
+                    {s.value}
+                  </span>
+                  {s.unit && (
+                    <span className="text-sm font-medium text-accent">
+                      {s.unit}
+                    </span>
+                  )}
+                </span>
+                <span className="mt-1 text-xs uppercase tracking-[0.18em] text-steel-300">
+                  {s.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2, duration: 0.8 }}
+        className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 items-center gap-3 md:flex"
+      >
+        <span className="text-[10px] uppercase tracking-[0.3em] text-steel-300">
+          Role para descobrir
+        </span>
+        <span className="block h-8 w-px bg-gradient-to-b from-accent to-transparent" />
+      </motion.div>
+    </section>
+  );
+}
