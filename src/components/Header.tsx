@@ -21,11 +21,11 @@ function Logo() {
       <Image
         src="/logo.png"
         alt="AEX | Inteligência Construtiva"
-        width={80}
-        height={80}
+        width={128}
+        height={128}
         quality={100}
         priority
-        className="h-8 w-auto md:h-10"
+        className="h-11 w-auto md:h-14"
       />
       <span className="hidden border-l border-white/15 pl-3 text-[10px] font-medium uppercase tracking-[0.25em] text-steel-300 sm:inline">
         Inteligência Construtiva
@@ -54,7 +54,7 @@ export default function Header() {
           : "bg-transparent"
       }`}
     >
-      <div className="container-aex flex h-16 items-center justify-between md:h-20">
+      <div className="container-aex flex h-20 items-center justify-between md:h-24">
         <Logo />
 
         <nav className="hidden items-center gap-10 md:flex">
