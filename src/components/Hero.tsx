@@ -15,7 +15,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative flex h-screen min-h-[680px] w-full items-center overflow-hidden bg-ink"
+      className="relative flex min-h-screen w-full items-center overflow-hidden bg-ink pt-32 sm:pt-28 md:pt-24 lg:pt-0"
     >
       {/* Architectural grid background */}
       <div
@@ -108,7 +108,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
           className="lg:col-span-4 lg:self-end"
         >
-          <div className="border-l-2 border-accent/40 pl-6">
+          <div className="border-t-2 border-accent/40 pt-6 lg:border-l-2 lg:border-t-0 lg:pl-6 lg:pt-0">
             {STATS.map((s, i) => (
               <div
                 key={s.label}
