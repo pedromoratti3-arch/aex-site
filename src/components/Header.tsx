@@ -48,10 +48,10 @@ export default function Header() {
   return (
     <header
       id="top"
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 backdrop-blur-md transition-all duration-300 ${
         scrolled
-          ? "border-b border-white/5 bg-ink/80 backdrop-blur-md"
-          : "bg-ink/30 backdrop-blur-sm"
+          ? "border-b border-white/10 bg-ink/95"
+          : "border-b border-white/5 bg-ink/90"
       }`}
     >
       <div className="container-aex flex h-20 items-center justify-between md:h-24">

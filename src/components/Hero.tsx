@@ -15,7 +15,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative flex min-h-screen w-full items-center overflow-hidden bg-ink pt-32 sm:pt-28 md:pt-24 lg:pt-0"
+      className="relative flex min-h-screen w-full items-center overflow-hidden bg-ink pt-32 sm:pt-36 md:pt-32 lg:pt-28"
     >
       {/* Architectural grid background */}
       <div
