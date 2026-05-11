@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import ScrollToTop from "@/components/ScrollToTop";
 import "./globals.css";
 
 const inter = Inter({
@@ -61,7 +62,10 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR" className={inter.variable}>
-      <body className="bg-ink font-sans text-bone antialiased">{children}</body>
+      <body className="bg-ink font-sans text-bone antialiased">
+        <ScrollToTop />
+        {children}
+      </body>
     </html>
   );
 }
