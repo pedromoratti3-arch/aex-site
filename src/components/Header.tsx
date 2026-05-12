@@ -57,35 +57,37 @@ export default function Header() {
       <div className="container-aex flex h-20 items-center justify-between md:h-24">
         <Logo />
 
-        <nav className="hidden items-center gap-10 md:flex">
-          {NAV.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="group relative text-sm font-medium tracking-wide text-steel-200 transition-colors hover:text-bone"
-            >
-              {item.label}
-              <span className="absolute -bottom-1 left-0 h-px w-0 bg-accent transition-all duration-300 group-hover:w-full" />
-            </a>
-          ))}
-        </nav>
+        <div className="flex items-center gap-6">
+          <nav className="hidden items-center gap-8 md:flex">
+            {NAV.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="group relative text-sm font-medium tracking-wide text-steel-200 transition-colors hover:text-bone"
+              >
+                {item.label}
+                <span className="absolute -bottom-1 left-0 h-px w-0 bg-accent transition-all duration-300 group-hover:w-full" />
+              </a>
+            ))}
+          </nav>
 
-        <a
-          href="#contato"
-          className="hidden md:inline-flex btn-primary !py-2.5 !px-5 !text-xs"
-        >
-          Solicitar orçamento
-        </a>
+          <a
+            href="#contato"
+            className="hidden md:inline-flex btn-primary !py-2.5 !px-5 !text-xs"
+          >
+            Solicitar orçamento
+          </a>
 
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-sm border border-white/10 text-bone md:hidden"
-          aria-label={open ? "Fechar menu" : "Abrir menu"}
-          aria-expanded={open}
-        >
-          {open ? <X size={18} /> : <Menu size={18} />}
-        </button>
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-sm border border-white/10 text-bone md:hidden"
+            aria-label={open ? "Fechar menu" : "Abrir menu"}
+            aria-expanded={open}
+          >
+            {open ? <X size={18} /> : <Menu size={18} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
