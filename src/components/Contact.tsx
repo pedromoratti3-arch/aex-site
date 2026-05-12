@@ -315,12 +315,12 @@ export default function Contact() {
                         href={info.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group flex items-center gap-4 transition-colors"
+                        className="group flex items-start gap-4 transition-colors"
                       >
                         {Inner}
                       </a>
                     ) : (
-                      <div className="flex items-center gap-4">{Inner}</div>
+                      <div className="flex items-start gap-4">{Inner}</div>
                     )}
                     {info.label === "Endereço" && (
                       <iframe
