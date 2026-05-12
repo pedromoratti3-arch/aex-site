@@ -13,10 +13,10 @@ export default function Home() {
     <main className="relative min-h-screen bg-ink text-bone">
       <Header />
       <Hero />
-      <AnimationSection />
       <About />
-      <Services />
       <Obras />
+      <Services />
+      <AnimationSection />
       <Contact />
       <Footer />
       <WhatsAppFloat />

@@ -6,8 +6,8 @@ import { Menu, X } from "lucide-react";
 
 const NAV = [
   { label: "Sobre", href: "#sobre" },
-  { label: "Serviços", href: "#servicos" },
   { label: "Obras", href: "#obras" },
+  { label: "Serviços", href: "#servicos" },
   { label: "Contato", href: "#contato" },
 ];
 
