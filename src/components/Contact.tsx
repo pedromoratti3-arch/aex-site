@@ -137,8 +137,9 @@ export default function Contact() {
           </h2>
           <div className="mt-6 h-px w-16 bg-accent" />
           <p className="mt-6 max-w-xl text-steel-200">
-            Conte-nos sobre o seu projeto. Nossa equipe técnica responde em até
-            24 horas úteis com uma análise inicial gratuita.
+            Conte-nos sobre o seu projeto. Quanto mais detalhes você fornecer —
+            tipo de empreendimento, área estimada e localização — mais precisa
+            será a avaliação da nossa equipe técnica.
           </p>
 
           {status === "success" ? (
@@ -285,7 +286,7 @@ export default function Contact() {
                 const Icon = info.icon;
                 const Inner = (
                   <>
-                    <span className="mt-1 inline-flex h-10 w-10 flex-none items-center justify-center rounded-sm bg-accent/10 text-accent ring-1 ring-accent/30">
+                    <span className="inline-flex h-10 w-10 flex-none items-center justify-center rounded-sm bg-accent/10 text-accent ring-1 ring-accent/30">
                       <Icon size={18} />
                     </span>
                     <div>
@@ -314,12 +315,12 @@ export default function Contact() {
                         href={info.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group flex items-start gap-4 transition-colors"
+                        className="group flex items-center gap-4 transition-colors"
                       >
                         {Inner}
                       </a>
                     ) : (
-                      <div className="flex items-start gap-4">{Inner}</div>
+                      <div className="flex items-center gap-4">{Inner}</div>
                     )}
                     {info.label === "Endereço" && (
                       <iframe
