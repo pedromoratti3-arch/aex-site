@@ -6,7 +6,6 @@
  */
 
 import { ClipboardList, MapPinned, Factory } from "lucide-react";
-import CornerSwoosh from "./CornerSwoosh";
 import FadeIn from "./FadeIn";
 
 const STAGES = [
@@ -80,7 +79,10 @@ export default function AnimationSection() {
                     </p>
                   </div>
 
-                  <CornerSwoosh />
+                  <span
+                    aria-hidden
+                    className="absolute right-4 top-4 h-[3px] w-3 rotate-45 rounded-sm bg-accent opacity-0 transition-all duration-300 group-hover:w-7 group-hover:opacity-100"
+                  />
                 </article>
               </FadeIn>
             );
