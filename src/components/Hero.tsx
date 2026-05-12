@@ -1,13 +1,107 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, MessageSquare } from "lucide-react";
 
-const STATS = [
-  { value: "+450.000", unit: "m²", label: "produzidos" },
-  { value: "+15", unit: "", label: "obras entregues" },
+type Stat = {
+  value: string;
+  unit: string;
+  label: string;
+  animateTo?: number;
+  prefix?: string;
+};
+
+const STATS: Stat[] = [
+  { value: "+450.000", unit: "m²", label: "produzidos", animateTo: 450000, prefix: "+" },
+  { value: "+15", unit: "", label: "obras entregues", animateTo: 15, prefix: "+" },
   { value: "Brasil", unit: "", label: "Sede no Espírito Santo, em expansão nacional" },
 ];
+
+const BR_FORMATTER = new Intl.NumberFormat("pt-BR");
+const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+
+function useCountUp(target: number, enabled: boolean) {
+  const [value, setValue] = useState(enabled ? 0 : target);
+  const ref = useRef<HTMLSpanElement>(null);
+  const triggered = useRef(false);
+
+  useEffect(() => {
+    if (!enabled) {
+      setValue(target);
+      return;
+    }
+    const node = ref.current;
+    if (!node || triggered.current) return;
+
+    let raf = 0;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (!entry?.isIntersecting || triggered.current) return;
+        triggered.current = true;
+        observer.disconnect();
+
+        const startAt = performance.now() + 300;
+        const duration = 2000;
+
+        const tick = (now: number) => {
+          if (now < startAt) {
+            raf = requestAnimationFrame(tick);
+            return;
+          }
+          const elapsed = now - startAt;
+          const progress = Math.min(elapsed / duration, 1);
+          setValue(Math.round(target * easeOutCubic(progress)));
+          if (progress < 1) {
+            raf = requestAnimationFrame(tick);
+          }
+        };
+
+        raf = requestAnimationFrame(tick);
+      },
+      { threshold: 0.3 },
+    );
+
+    observer.observe(node);
+    return () => {
+      observer.disconnect();
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, [target, enabled]);
+
+  return { ref, formatted: BR_FORMATTER.format(value) };
+}
+
+function StatItem({ stat, isLast }: { stat: Stat; isLast: boolean }) {
+  const reduce = useReducedMotion();
+  const canAnimate = stat.animateTo != null && !reduce;
+  const { ref, formatted } = useCountUp(stat.animateTo ?? 0, canAnimate);
+  const display = canAnimate ? `${stat.prefix ?? ""}${formatted}` : stat.value;
+
+  return (
+    <div
+      className={`flex flex-col py-3 ${
+        !isLast ? "border-b border-white/5" : ""
+      }`}
+    >
+      <span className="flex items-baseline gap-2">
+        <span
+          ref={ref}
+          className="text-3xl font-bold tracking-tightest text-bone md:text-4xl"
+        >
+          {display}
+        </span>
+        {stat.unit && (
+          <span className="text-sm font-medium text-accent">{stat.unit}</span>
+        )}
+      </span>
+      <span className="mt-1 text-xs uppercase tracking-[0.18em] text-steel-300">
+        {stat.label}
+      </span>
+    </div>
+  );
+}
 
 export default function Hero() {
   const reduce = useReducedMotion();
@@ -105,26 +199,11 @@ export default function Hero() {
         >
           <div className="border-t-2 border-accent/40 pt-6 lg:border-l-2 lg:border-t-0 lg:pl-6 lg:pt-0">
             {STATS.map((s, i) => (
-              <div
+              <StatItem
                 key={s.label}
-                className={`flex flex-col py-3 ${
-                  i !== STATS.length - 1 ? "border-b border-white/5" : ""
-                }`}
-              >
-                <span className="flex items-baseline gap-2">
-                  <span className="text-3xl font-bold tracking-tightest text-bone md:text-4xl">
-                    {s.value}
-                  </span>
-                  {s.unit && (
-                    <span className="text-sm font-medium text-accent">
-                      {s.unit}
-                    </span>
-                  )}
-                </span>
-                <span className="mt-1 text-xs uppercase tracking-[0.18em] text-steel-300">
-                  {s.label}
-                </span>
-              </div>
+                stat={s}
+                isLast={i === STATS.length - 1}
+              />
             ))}
           </div>
         </motion.div>
