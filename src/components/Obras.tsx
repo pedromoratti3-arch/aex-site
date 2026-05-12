@@ -51,13 +51,13 @@ export default function Obras() {
           <div className="max-w-2xl">
             <span className="eyebrow">Portfólio</span>
             <h2 className="section-heading mt-4 text-bone">
-              Obras que comprovam o que dizemos.
+              Obras <span className="text-accent">entregues</span>.
             </h2>
             <div className="mt-6 h-px w-16 bg-accent" />
           </div>
           <p className="max-w-md text-sm text-steel-200">
-            Mais de 450.000 m² produzidos no Espírito Santo, com média de 15
-            obras entregues. Selecionamos algumas para você conhecer.
+            +450.000 m² em +15 obras concluídas. Do Espírito Santo para o
+            Brasil — uma seleção dos projetos.
           </p>
         </FadeIn>
 
