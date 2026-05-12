@@ -4,24 +4,30 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, MessageSquare } from "lucide-react";
 
+type Easing = (t: number) => number;
+
+const easeOutExpo: Easing = (t) =>
+  t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+const easeOutCubic: Easing = (t) => 1 - Math.pow(1 - t, 3);
+
 type Stat = {
   value: string;
   unit: string;
   label: string;
   animateTo?: number;
   prefix?: string;
+  easing?: Easing;
 };
 
 const STATS: Stat[] = [
-  { value: "+450.000", unit: "m²", label: "produzidos", animateTo: 450000, prefix: "+" },
-  { value: "+15", unit: "", label: "obras entregues", animateTo: 15, prefix: "+" },
+  { value: "+450.000", unit: "m²", label: "produzidos", animateTo: 450000, prefix: "+", easing: easeOutExpo },
+  { value: "+15", unit: "", label: "obras entregues", animateTo: 15, prefix: "+", easing: easeOutCubic },
   { value: "Brasil", unit: "", label: "Sede no Espírito Santo, em expansão nacional" },
 ];
 
 const BR_FORMATTER = new Intl.NumberFormat("pt-BR");
-const easeOutQuint = (t: number) => 1 - Math.pow(1 - t, 5);
 
-function useCountUp(target: number, enabled: boolean) {
+function useCountUp(target: number, enabled: boolean, easing: Easing) {
   const [value, setValue] = useState(enabled ? 0 : target);
   const ref = useRef<HTMLSpanElement>(null);
   const triggered = useRef(false);
@@ -42,8 +48,8 @@ function useCountUp(target: number, enabled: boolean) {
         triggered.current = true;
         observer.disconnect();
 
-        const startAt = performance.now() + 300;
-        const duration = 2500;
+        const startAt = performance.now() + 100;
+        const duration = 3000;
 
         const tick = (now: number) => {
           if (now < startAt) {
@@ -52,7 +58,7 @@ function useCountUp(target: number, enabled: boolean) {
           }
           const elapsed = now - startAt;
           const progress = Math.min(elapsed / duration, 1);
-          setValue(Math.round(target * easeOutQuint(progress)));
+          setValue(Math.round(target * easing(progress)));
           if (progress < 1) {
             raf = requestAnimationFrame(tick);
           }
@@ -68,7 +74,7 @@ function useCountUp(target: number, enabled: boolean) {
       observer.disconnect();
       if (raf) cancelAnimationFrame(raf);
     };
-  }, [target, enabled]);
+  }, [target, enabled, easing]);
 
   return { ref, formatted: BR_FORMATTER.format(value) };
 }
@@ -76,7 +82,11 @@ function useCountUp(target: number, enabled: boolean) {
 function StatItem({ stat, isLast }: { stat: Stat; isLast: boolean }) {
   const reduce = useReducedMotion();
   const canAnimate = stat.animateTo != null && !reduce;
-  const { ref, formatted } = useCountUp(stat.animateTo ?? 0, canAnimate);
+  const { ref, formatted } = useCountUp(
+    stat.animateTo ?? 0,
+    canAnimate,
+    stat.easing ?? easeOutCubic,
+  );
   const display = canAnimate ? `${stat.prefix ?? ""}${formatted}` : stat.value;
 
   return (
