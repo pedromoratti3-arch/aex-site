@@ -286,8 +286,8 @@ export default function Contact() {
                 const Icon = info.icon;
                 const Inner = (
                   <>
-                    <span className="inline-flex h-10 w-10 flex-none items-center justify-center rounded-sm bg-accent/10 text-accent ring-1 ring-accent/30">
-                      <Icon size={18} />
+                    <span className="inline-flex h-10 w-10 flex-none items-center justify-center rounded-md bg-accent/10 p-2 text-accent ring-1 ring-accent/30">
+                      <Icon size={22} />
                     </span>
                     <div>
                       <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-steel-300">
