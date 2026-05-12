@@ -49,7 +49,7 @@ function useCountUp(target: number, enabled: boolean, easing: Easing) {
         observer.disconnect();
 
         const startAt = performance.now() + 100;
-        const duration = 3000;
+        const duration = 2000;
 
         const tick = (now: number) => {
           if (now < startAt) {
