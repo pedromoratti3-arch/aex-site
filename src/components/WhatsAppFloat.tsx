@@ -21,7 +21,7 @@ export default function WhatsAppFloat() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Falar com a AEX no WhatsApp"
-      className={`group fixed bottom-6 right-6 z-50 inline-flex h-14 w-14 items-center justify-center rounded-full bg-accent text-ink shadow-lg shadow-accent/30 transition-all duration-200 hover:scale-105 hover:bg-accent-hover hover:shadow-2xl md:bottom-8 md:right-8 ${
+      className={`group fixed bottom-6 right-6 z-50 inline-flex h-14 w-14 items-center justify-center rounded-full bg-accent text-ink shadow-lg transition-all duration-200 hover:scale-105 hover:bg-accent-hover hover:shadow-2xl md:bottom-8 md:right-8 ${
         visible
           ? "translate-y-0 opacity-100"
           : "pointer-events-none translate-y-4 opacity-0"
