@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, ChevronDown, MessageSquare } from "lucide-react";
+import { ArrowRight, MessageSquare } from "lucide-react";
 
 const STATS = [
   { value: "+450.000", unit: "m²", label: "produzidos" },
@@ -26,10 +26,10 @@ export default function Hero() {
         aria-hidden
         className="absolute inset-0 bg-radial-fade"
       />
-      {/* Diagonal accent line — rastro de marca, fade da origem para a esquerda */}
+      {/* Diagonal accent line — echoes the logo swoosh */}
       <div
         aria-hidden
-        className="pointer-events-none absolute right-0 top-20 hidden h-[2px] w-[45vw] origin-right -rotate-[25deg] bg-gradient-to-l from-accent/70 to-transparent md:block"
+        className="pointer-events-none absolute right-[-10%] top-[12%] h-[2px] w-[40%] rotate-[-25deg] bg-gradient-to-r from-transparent via-accent to-transparent opacity-60"
       />
       <div
         aria-hidden
@@ -135,13 +135,18 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Scroll indicator — chevron animado */}
-      <div className="pointer-events-none absolute bottom-8 left-1/2 -translate-x-1/2">
-        <ChevronDown
-          className="h-6 w-6 animate-chevron-bounce text-white/40"
-          aria-hidden
-        />
-      </div>
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2, duration: 0.8 }}
+        className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 items-center gap-3 md:flex"
+      >
+        <span className="text-[10px] uppercase tracking-[0.3em] text-steel-300">
+          Role para descobrir
+        </span>
+        <span className="block h-8 w-px bg-gradient-to-b from-accent to-transparent" />
+      </motion.div>
     </section>
   );
 }
