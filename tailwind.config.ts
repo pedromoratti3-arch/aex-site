@@ -39,6 +39,15 @@ const config: Config = {
       backgroundSize: {
         grid: "64px 64px",
       },
+      animation: {
+        "chevron-bounce": "chevronBounce 1.5s ease-in-out infinite",
+      },
+      keyframes: {
+        chevronBounce: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-8px)" },
+        },
+      },
     },
   },
   plugins: [],
