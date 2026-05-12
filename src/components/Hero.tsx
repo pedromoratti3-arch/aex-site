@@ -26,11 +26,6 @@ export default function Hero() {
         aria-hidden
         className="absolute inset-0 bg-radial-fade"
       />
-      {/* Diagonal accent line — echoes the logo swoosh */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute right-[-10%] top-[12%] h-[2px] w-[40%] rotate-[-25deg] bg-gradient-to-r from-transparent via-accent to-transparent opacity-60"
-      />
       <div
         aria-hidden
         className="pointer-events-none absolute -bottom-32 -left-32 h-96 w-96 rounded-full bg-accent/10 blur-3xl"
@@ -135,18 +130,6 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.8 }}
-        className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 items-center gap-3 md:flex"
-      >
-        <span className="text-[10px] uppercase tracking-[0.3em] text-steel-300">
-          Role para descobrir
-        </span>
-        <span className="block h-8 w-px bg-gradient-to-b from-accent to-transparent" />
-      </motion.div>
     </section>
   );
 }
