@@ -19,7 +19,7 @@ const STATS: Stat[] = [
 ];
 
 const BR_FORMATTER = new Intl.NumberFormat("pt-BR");
-const easeOutQuart = (t: number) => 1 - Math.pow(1 - t, 4);
+const easeOutQuint = (t: number) => 1 - Math.pow(1 - t, 5);
 
 function useCountUp(target: number, enabled: boolean) {
   const [value, setValue] = useState(enabled ? 0 : target);
@@ -42,7 +42,7 @@ function useCountUp(target: number, enabled: boolean) {
         triggered.current = true;
         observer.disconnect();
 
-        const startAt = performance.now() + 700;
+        const startAt = performance.now() + 300;
         const duration = 2500;
 
         const tick = (now: number) => {
@@ -52,7 +52,7 @@ function useCountUp(target: number, enabled: boolean) {
           }
           const elapsed = now - startAt;
           const progress = Math.min(elapsed / duration, 1);
-          setValue(Math.round(target * easeOutQuart(progress)));
+          setValue(Math.round(target * easeOutQuint(progress)));
           if (progress < 1) {
             raf = requestAnimationFrame(tick);
           }
