@@ -12,7 +12,7 @@ const PILLARS = [
 
 export default function About() {
   return (
-    <section id="sobre" className="relative w-full bg-ink py-24 md:py-32">
+    <section id="sobre" className="relative w-full bg-ink py-20 md:py-24">
       <div className="container-aex grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20">
         <FadeIn className="order-2 lg:order-1">
           <span className="eyebrow">Sobre a AEX</span>

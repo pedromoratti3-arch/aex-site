@@ -126,7 +126,7 @@ export default function Contact() {
   return (
     <section
       id="contato"
-      className="relative w-full border-t border-white/5 bg-steel-900/40 py-24 md:py-32"
+      className="relative w-full border-t border-white/5 bg-steel-900/40 py-20 md:py-24"
     >
       <div className="container-aex grid grid-cols-1 gap-16 lg:grid-cols-12 lg:gap-12">
         {/* Form */}

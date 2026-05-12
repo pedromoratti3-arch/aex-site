@@ -45,7 +45,7 @@ const OBRAS = [
 
 export default function Obras() {
   return (
-    <section id="obras" className="relative w-full bg-ink py-24 md:py-32">
+    <section id="obras" className="relative w-full bg-ink py-20 md:py-24">
       <div className="container-aex">
         <FadeIn className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">

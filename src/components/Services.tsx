@@ -31,7 +31,7 @@ export default function Services() {
   return (
     <section
       id="servicos"
-      className="relative w-full border-t border-white/5 bg-steel-900/40 py-24 md:py-32"
+      className="relative w-full border-t border-white/5 bg-steel-900/40 py-20 md:py-24"
     >
       <div className="container-aex">
         <FadeIn className="max-w-3xl">

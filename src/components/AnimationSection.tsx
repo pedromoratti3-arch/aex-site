@@ -36,7 +36,7 @@ export default function AnimationSection() {
   return (
     <section
       id="processo"
-      className="relative w-full overflow-hidden bg-ink py-24 md:py-32"
+      className="relative w-full overflow-hidden bg-ink py-20 md:py-24"
       aria-label="Processo construtivo: planta, terreno e galpão"
     >
       <div
