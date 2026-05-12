@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
-import { MapPin, Phone, Send } from "lucide-react";
+import { useRef, useState, type FormEvent } from "react";
+import { CheckCircle2, Loader2, MapPin, Phone, Send } from "lucide-react";
 import CornerSwoosh from "./CornerSwoosh";
 import FadeIn from "./FadeIn";
 
@@ -13,6 +13,9 @@ type FormState = {
   mensagem: string;
 };
 
+type SubmitStatus = "idle" | "loading" | "success" | "error";
+type FieldErrors = Partial<Record<keyof FormState, string>>;
+
 const INITIAL: FormState = {
   nome: "",
   empresa: "",
@@ -22,7 +25,23 @@ const INITIAL: FormState = {
 };
 
 const WHATSAPP_URL =
-  "https://wa.me/5527999559800?text=Olá%20AEX!%20Vim%20pelo%20site%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto.";
+  "https://wa.me/5527999559800?text=Ol%C3%A1!%20Visitei%20o%20site%20da%20AEX%20e%20gostaria%20de%20conversar%20sobre%20um%20poss%C3%ADvel%20empreendimento.%20Pode%20me%20direcionar%20%C3%A0%20pessoa%20respons%C3%A1vel%20por%20novos%20projetos%3F";
+
+// Configure NEXT_PUBLIC_WEB3FORMS_KEY no Vercel após obter chave em https://web3forms.com/#start
+const ACCESS_KEY =
+  process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "ACCESS_KEY_PLACEHOLDER";
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function validate(form: FormState): FieldErrors {
+  const errors: FieldErrors = {};
+  if (form.nome.trim().length < 3) errors.nome = "Mínimo 3 caracteres";
+  if (!EMAIL_REGEX.test(form.email.trim()))
+    errors.email = "Informe um e-mail válido";
+  if (form.mensagem.trim().length < 10)
+    errors.mensagem = "Mínimo 10 caracteres";
+  return errors;
+}
 
 const CONTACT_INFO = [
   {
@@ -44,14 +63,65 @@ const CONTACT_INFO = [
 
 export default function Contact() {
   const [form, setForm] = useState<FormState>(INITIAL);
+  const [status, setStatus] = useState<SubmitStatus>("idle");
+  const [errors, setErrors] = useState<FieldErrors>({});
+  const successRef = useRef<HTMLDivElement>(null);
 
   function update<K extends keyof FormState>(key: K, value: FormState[K]) {
     setForm((prev) => ({ ...prev, [key]: value }));
+    if (errors[key]) {
+      setErrors((prev) => ({ ...prev, [key]: undefined }));
+    }
   }
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  function resetForm() {
+    setForm(INITIAL);
+    setErrors({});
+    setStatus("idle");
+  }
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    /* UI only — backend de envio fica para fase posterior */
+    const validationErrors = validate(form);
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+    setErrors({});
+    setStatus("loading");
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: ACCESS_KEY,
+          name: form.nome,
+          company: form.empresa,
+          email: form.email,
+          phone: `Telefone: ${form.telefone}`,
+          message: `Mensagem: ${form.mensagem}`,
+          subject: `Novo lead via site AEX — ${form.nome}`,
+          from_name: "Site AEX",
+        }),
+      });
+      const data = await response.json();
+      if (data?.success) {
+        setStatus("success");
+        requestAnimationFrame(() => {
+          successRef.current?.scrollIntoView({
+            behavior: "smooth",
+            block: "center",
+          });
+        });
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
   }
 
   return (
@@ -72,60 +142,132 @@ export default function Contact() {
             24 horas úteis com uma análise inicial gratuita.
           </p>
 
-          <form onSubmit={handleSubmit} className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2">
-            <Field
-              label="Nome"
-              required
-              value={form.nome}
-              onChange={(v) => update("nome", v)}
-              placeholder="Seu nome completo"
-            />
-            <Field
-              label="Empresa"
-              value={form.empresa}
-              onChange={(v) => update("empresa", v)}
-              placeholder="Razão social"
-            />
-            <Field
-              label="E-mail"
-              type="email"
-              required
-              value={form.email}
-              onChange={(v) => update("email", v)}
-              placeholder="email@empresa.com.br"
-            />
-            <Field
-              label="Telefone"
-              type="tel"
-              value={form.telefone}
-              onChange={(v) => update("telefone", v)}
-              placeholder="(27) 0 0000-0000"
-            />
-
-            <div className="sm:col-span-2">
-              <Label>Mensagem</Label>
-              <textarea
-                value={form.mensagem}
-                onChange={(e) => update("mensagem", e.target.value)}
-                rows={5}
-                placeholder="Descreva o tipo de obra, área estimada, prazo e localização."
-                className="mt-2 w-full resize-none border border-white/10 bg-ink px-4 py-3 text-sm text-bone placeholder:text-steel-400 transition-colors focus:border-accent focus:outline-none"
-              />
-            </div>
-
-            <div className="sm:col-span-2">
-              <button type="submit" className="btn-primary group w-full sm:w-auto">
-                Enviar mensagem
-                <Send
-                  size={16}
-                  className="transition-transform group-hover:translate-x-1"
-                />
-              </button>
-              <p className="mt-3 text-xs text-steel-400">
-                Ao enviar, você concorda em ser contatado pela equipe AEX.
+          {status === "success" ? (
+            <div
+              ref={successRef}
+              className="mt-10 border border-accent/40 bg-accent/5 p-8"
+            >
+              <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-accent/20 text-accent ring-1 ring-accent/40">
+                <CheckCircle2 size={24} />
+              </span>
+              <h3 className="mt-6 text-2xl font-bold tracking-tight text-bone">
+                Mensagem recebida!
+              </h3>
+              <p className="mt-3 max-w-md text-sm text-steel-200">
+                Nossa equipe técnica responde em até 24h úteis. Para urgências,
+                fale pelo WhatsApp.
               </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <button
+                  type="button"
+                  onClick={resetForm}
+                  className="btn-outline"
+                >
+                  Enviar nova mensagem
+                </button>
+                <a
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary"
+                >
+                  WhatsApp
+                </a>
+              </div>
             </div>
-          </form>
+          ) : (
+            <form
+              onSubmit={handleSubmit}
+              noValidate
+              className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2"
+            >
+              <Field
+                label="Nome"
+                required
+                value={form.nome}
+                onChange={(v) => update("nome", v)}
+                placeholder="Seu nome completo"
+                error={errors.nome}
+              />
+              <Field
+                label="Empresa"
+                value={form.empresa}
+                onChange={(v) => update("empresa", v)}
+                placeholder="Razão social"
+              />
+              <Field
+                label="E-mail"
+                type="email"
+                required
+                value={form.email}
+                onChange={(v) => update("email", v)}
+                placeholder="email@empresa.com.br"
+                error={errors.email}
+              />
+              <Field
+                label="Telefone"
+                type="tel"
+                value={form.telefone}
+                onChange={(v) => update("telefone", v)}
+                placeholder="(27) 0 0000-0000"
+              />
+
+              <div className="sm:col-span-2">
+                <Label>Mensagem</Label>
+                <textarea
+                  value={form.mensagem}
+                  onChange={(e) => update("mensagem", e.target.value)}
+                  rows={5}
+                  placeholder="Descreva o tipo de obra, área estimada, prazo e localização."
+                  className={`mt-2 w-full resize-none border bg-ink px-4 py-3 text-sm text-bone placeholder:text-steel-400 transition-colors focus:outline-none ${
+                    errors.mensagem
+                      ? "border-red-500/60 focus:border-red-500"
+                      : "border-white/10 focus:border-accent"
+                  }`}
+                />
+                {errors.mensagem && (
+                  <p className="mt-1.5 text-xs text-red-400">
+                    {errors.mensagem}
+                  </p>
+                )}
+              </div>
+
+              {status === "error" && (
+                <div
+                  role="alert"
+                  className="sm:col-span-2 border border-red-500/40 bg-red-500/10 px-4 py-3 text-sm text-red-300"
+                >
+                  Erro ao enviar. Tente novamente ou use o WhatsApp.
+                </div>
+              )}
+
+              <div className="sm:col-span-2">
+                <button
+                  type="submit"
+                  disabled={status === "loading"}
+                  className="btn-primary group w-full sm:w-auto disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  {status === "loading" ? (
+                    <>
+                      <Loader2 size={16} className="animate-spin" />
+                      Enviando...
+                    </>
+                  ) : (
+                    <>
+                      Enviar mensagem
+                      <Send
+                        size={16}
+                        className="transition-transform group-hover:translate-x-1"
+                      />
+                    </>
+                  )}
+                </button>
+                <p className="mt-3 text-xs text-steel-400">
+                  Ao enviar, você concorda em ser contatado pela equipe AEX.
+                </p>
+              </div>
+            </form>
+          )}
         </FadeIn>
 
         {/* Info */}
@@ -228,6 +370,7 @@ type FieldProps = {
   placeholder?: string;
   type?: "text" | "email" | "tel";
   required?: boolean;
+  error?: string;
 };
 
 function Field({
@@ -237,6 +380,7 @@ function Field({
   placeholder,
   type = "text",
   required,
+  error,
 }: FieldProps) {
   return (
     <div>
@@ -250,8 +394,13 @@ function Field({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="mt-2 w-full border border-white/10 bg-ink px-4 py-3 text-sm text-bone placeholder:text-steel-400 transition-colors focus:border-accent focus:outline-none"
+        className={`mt-2 w-full border bg-ink px-4 py-3 text-sm text-bone placeholder:text-steel-400 transition-colors focus:outline-none ${
+          error
+            ? "border-red-500/60 focus:border-red-500"
+            : "border-white/10 focus:border-accent"
+        }`}
       />
+      {error && <p className="mt-1.5 text-xs text-red-400">{error}</p>}
     </div>
   );
 }

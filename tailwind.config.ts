@@ -39,21 +39,6 @@ const config: Config = {
       backgroundSize: {
         grid: "64px 64px",
       },
-      animation: {
-        "pulse-soft": "pulseSoft 2.4s ease-in-out infinite",
-      },
-      keyframes: {
-        pulseSoft: {
-          "0%, 100%": {
-            transform: "scale(1)",
-            boxShadow: "0 0 0 0 rgba(0, 210, 106, 0.55)",
-          },
-          "50%": {
-            transform: "scale(1.04)",
-            boxShadow: "0 0 0 14px rgba(0, 210, 106, 0)",
-          },
-        },
-      },
     },
   },
   plugins: [],

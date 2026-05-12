@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 const WHATSAPP_HREF =
-  "https://wa.me/5527999559800?text=Olá%20AEX!%20Vim%20pelo%20site%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto.";
+  "https://wa.me/5527999559800?text=Ol%C3%A1!%20Visitei%20o%20site%20da%20AEX%20e%20gostaria%20de%20conversar%20sobre%20um%20poss%C3%ADvel%20empreendimento.%20Pode%20me%20direcionar%20%C3%A0%20pessoa%20respons%C3%A1vel%20por%20novos%20projetos%3F";
 
 export default function WhatsAppFloat() {
   const [visible, setVisible] = useState(false);
@@ -21,11 +21,11 @@ export default function WhatsAppFloat() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Falar com a AEX no WhatsApp"
-      className={`group fixed bottom-6 right-6 z-50 inline-flex h-14 w-14 items-center justify-center rounded-full bg-accent text-ink shadow-lg shadow-accent/30 transition-all duration-300 hover:bg-accent-hover md:bottom-8 md:right-8 ${
+      className={`group fixed bottom-6 right-6 z-50 inline-flex h-14 w-14 items-center justify-center rounded-full bg-accent text-ink shadow-lg shadow-accent/30 transition-all duration-200 hover:scale-105 hover:bg-accent-hover hover:shadow-2xl md:bottom-8 md:right-8 ${
         visible
           ? "translate-y-0 opacity-100"
           : "pointer-events-none translate-y-4 opacity-0"
-      } animate-pulse-soft`}
+      }`}
     >
       <WhatsAppIcon className="h-7 w-7" />
       <span className="pointer-events-none absolute right-full mr-3 whitespace-nowrap rounded-sm bg-ink px-3 py-2 text-xs font-medium text-bone opacity-0 ring-1 ring-white/10 transition-all duration-300 group-hover:opacity-100">

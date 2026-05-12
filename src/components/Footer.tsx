@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Linkedin, Instagram } from "lucide-react";
 
 const WHATSAPP_URL =
-  "https://wa.me/5527999559800?text=Olá%20AEX!%20Vim%20pelo%20site%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto.";
+  "https://wa.me/5527999559800?text=Ol%C3%A1!%20Visitei%20o%20site%20da%20AEX%20e%20gostaria%20de%20conversar%20sobre%20um%20poss%C3%ADvel%20empreendimento.%20Pode%20me%20direcionar%20%C3%A0%20pessoa%20respons%C3%A1vel%20por%20novos%20projetos%3F";
 
 const COLUMNS = [
   {
