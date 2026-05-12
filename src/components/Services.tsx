@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowUpRight, Warehouse, Factory, Building2 } from "lucide-react";
+import CornerSwoosh from "./CornerSwoosh";
 import FadeIn from "./FadeIn";
 
 const SERVICES = [
@@ -49,11 +50,7 @@ export default function Services() {
             return (
               <FadeIn key={service.title} delay={i * 0.1}>
                 <article className="group relative flex h-full flex-col border border-white/10 bg-ink p-8 transition-all duration-300 hover:border-accent hover:-translate-y-1 hover:shadow-[0_20px_60px_-20px_rgba(0,210,106,0.4)]">
-                  {/* Top swoosh accent */}
-                  <span
-                    aria-hidden
-                    className="absolute right-6 top-6 h-[3px] w-4 rotate-45 rounded-sm bg-accent transition-all duration-300 group-hover:w-8"
-                  />
+                  <CornerSwoosh />
 
                   <div className="mb-8 inline-flex h-14 w-14 items-center justify-center rounded-sm bg-accent/10 text-accent ring-1 ring-accent/30 transition-all duration-300 group-hover:bg-accent group-hover:text-ink group-hover:ring-accent">
                     <Icon size={26} strokeWidth={1.6} />

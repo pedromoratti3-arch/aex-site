@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { MapPin, Phone, Send } from "lucide-react";
+import CornerSwoosh from "./CornerSwoosh";
 import FadeIn from "./FadeIn";
 
 type FormState = {
@@ -130,10 +131,7 @@ export default function Contact() {
         {/* Info */}
         <FadeIn delay={0.1} className="lg:col-span-5">
           <div className="relative h-full border border-white/10 bg-ink p-8 md:p-10">
-            <span
-              aria-hidden
-              className="absolute -right-2 -top-2 h-[3px] w-10 rotate-45 rounded-sm bg-accent"
-            />
+            <CornerSwoosh />
 
             <h3 className="text-xl font-bold tracking-tight text-bone">
               Onde estamos
