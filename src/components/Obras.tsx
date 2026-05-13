@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 import FadeIn from "./FadeIn";
 
 type Obra = {
@@ -197,25 +197,12 @@ function Pagination({
   totalPages: number;
   onChange: (page: number) => void;
 }) {
-  const isFirst = currentPage === 1;
-  const isLast = currentPage === totalPages;
-
   return (
     <nav
       aria-label="Paginação do portfólio"
-      className="mt-12 flex items-center justify-center gap-6 sm:gap-8"
+      className="mt-12 flex justify-center"
     >
-      <button
-        type="button"
-        onClick={() => onChange(currentPage - 1)}
-        disabled={isFirst}
-        aria-label="Página anterior"
-        className="inline-flex items-center text-steel-300 transition-colors duration-200 hover:text-bone disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:text-steel-300"
-      >
-        <ChevronLeft size={20} />
-      </button>
-
-      <ul className="flex items-center gap-6 sm:gap-8">
+      <ul className="flex items-center gap-8 sm:gap-10">
         {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
           const isActive = page === currentPage;
           return (
@@ -241,16 +228,6 @@ function Pagination({
           );
         })}
       </ul>
-
-      <button
-        type="button"
-        onClick={() => onChange(currentPage + 1)}
-        disabled={isLast}
-        aria-label="Próxima página"
-        className="inline-flex items-center text-steel-300 transition-colors duration-200 hover:text-bone disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:text-steel-300"
-      >
-        <ChevronRight size={20} />
-      </button>
     </nav>
   );
 }
