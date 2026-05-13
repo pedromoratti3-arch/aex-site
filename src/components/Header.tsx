@@ -25,9 +25,9 @@ function Logo() {
         height={128}
         quality={100}
         priority
-        className="h-11 w-auto md:h-14"
+        className="h-12 w-auto md:h-16"
       />
-      <span className="hidden border-l border-white/15 pl-3 text-[10px] font-medium uppercase tracking-[0.25em] text-steel-300 sm:inline">
+      <span className="hidden border-l border-white/15 pl-3 text-xs font-medium uppercase tracking-[0.25em] text-steel-300 sm:inline">
         Inteligência Construtiva
       </span>
     </a>
