@@ -48,7 +48,7 @@ export default function Services() {
             const Icon = service.icon;
             return (
               <FadeIn key={service.title} delay={i * 0.1}>
-                <article className="group relative flex h-full flex-col border border-white/10 bg-ink p-8 transition-all duration-300 hover:-translate-y-1 hover:border-neutral-700 hover:bg-neutral-900/50">
+                <article className="group relative flex h-full flex-col border border-white/10 bg-ink p-8 transition-all duration-300 hover:-translate-y-1 hover:border-accent">
                   {/* Top swoosh accent */}
                   <span
                     aria-hidden
