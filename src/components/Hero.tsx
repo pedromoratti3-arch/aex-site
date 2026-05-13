@@ -99,6 +99,7 @@ function StatItem({ stat, isLast }: { stat: Stat; isLast: boolean }) {
         <span
           ref={ref}
           className="text-3xl font-bold tracking-tightest text-bone md:text-4xl"
+          style={{ textShadow: "0 2px 8px rgba(0,0,0,0.5)" }}
         >
           {display}
         </span>
@@ -121,21 +122,59 @@ export default function Hero() {
       id="hero"
       className="relative flex min-h-screen w-full items-center overflow-hidden bg-ink pt-32 sm:pt-36 md:pt-32 lg:pt-28"
     >
-      {/* Architectural grid background */}
+      {/* Cinematic photo background */}
+      <picture aria-hidden="true" className="absolute inset-0 z-0 block">
+        <source
+          media="(max-width: 768px)"
+          srcSet="/hero-galpao-mobile.webp"
+          type="image/webp"
+        />
+        <source srcSet="/hero-galpao.webp" type="image/webp" />
+        <img
+          src="/hero-galpao.jpg"
+          alt=""
+          className="hero-photo h-full w-full object-cover object-center"
+          style={{
+            filter: "saturate(0.7) brightness(0.85) contrast(1.05)",
+            animation: reduce
+              ? "none"
+              : "kenBurns 60s ease-in-out infinite alternate",
+            transformOrigin: "center center",
+          }}
+        />
+      </picture>
+
+      {/* Dark gradient overlay for legibility */}
       <div
         aria-hidden
-        className="absolute inset-0 bg-grid-architectural bg-grid opacity-60"
-      />
-      <div
-        aria-hidden
-        className="absolute inset-0 bg-radial-fade"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -bottom-32 -left-32 h-96 w-96 rounded-full bg-accent/10 blur-3xl"
+        className="absolute inset-0 z-10"
+        style={{
+          background:
+            "linear-gradient(to bottom, rgba(10,10,10,0.78) 0%, rgba(10,10,10,0.55) 40%, rgba(10,10,10,0.65) 70%, rgba(10,10,10,0.85) 100%)",
+        }}
       />
 
-      <div className="container-aex relative z-10 grid w-full grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-8">
+      {/* Radial vignette — focus center, darken edges */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-10"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, transparent 0%, transparent 45%, rgba(10,10,10,0.6) 100%)",
+        }}
+      />
+
+      {/* Architectural grid texture — heavily reduced */}
+      <div
+        aria-hidden
+        className="absolute inset-0 z-20 bg-grid-architectural bg-grid opacity-[0.4]"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -bottom-32 -left-32 z-20 h-96 w-96 rounded-full bg-accent/10 blur-3xl"
+      />
+
+      <div className="container-aex relative z-30 grid w-full grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-8">
           <motion.div
             initial={{ opacity: 0, y: reduce ? 0 : 12 }}

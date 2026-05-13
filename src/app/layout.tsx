@@ -62,6 +62,20 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR" className={inter.variable}>
+      <head>
+        <link
+          rel="preload"
+          as="image"
+          href="/hero-galpao.webp"
+          media="(min-width: 769px)"
+        />
+        <link
+          rel="preload"
+          as="image"
+          href="/hero-galpao-mobile.webp"
+          media="(max-width: 768px)"
+        />
+      </head>
       <body className="bg-ink font-sans text-bone antialiased">
         <ScrollToTop />
         {children}
