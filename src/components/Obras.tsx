@@ -132,7 +132,7 @@ export default function Obras() {
             {currentObras.map((obra) => (
               <article
                 key={obra.title}
-                className="group relative overflow-hidden border border-white/10 bg-steel-900/60 transition-all duration-300 hover:border-accent"
+                className="group relative overflow-hidden border border-white/10 bg-steel-900/60 transition-all duration-300 hover:-translate-y-1 hover:border-accent"
               >
                 <div className="relative aspect-[4/3] w-full overflow-hidden bg-ink">
                   {/* TODO: trocar imagens placeholder por fotos reais */}

@@ -78,11 +78,11 @@ body {
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-sm bg-accent px-6 py-3 text-sm font-medium tracking-wide text-ink transition-colors duration-200 hover:bg-accent/90;
+    @apply inline-flex items-center justify-center gap-2 rounded-sm bg-accent px-6 py-3 text-sm font-medium tracking-wide text-ink transition-all duration-200 hover:scale-[1.02] hover:bg-accent/90;
   }
 
   .btn-outline {
-    @apply inline-flex items-center justify-center gap-2 rounded-sm border border-white/30 bg-transparent px-6 py-3 text-sm font-medium tracking-wide text-bone transition-all duration-200 hover:border-accent hover:text-accent;
+    @apply inline-flex items-center justify-center gap-2 rounded-sm border border-white/30 bg-transparent px-6 py-3 text-sm font-medium tracking-wide text-bone transition-all duration-200 hover:scale-[1.02] hover:border-neutral-500 hover:bg-neutral-900/50;
   }
 
   .eyebrow {
