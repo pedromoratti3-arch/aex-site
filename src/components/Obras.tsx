@@ -103,7 +103,7 @@ export default function Obras() {
     <section
       ref={sectionRef}
       id="obras"
-      className="relative w-full scroll-mt-20 bg-ink py-20 md:scroll-mt-24"
+      className="relative w-full bg-ink py-20"
     >
       <div className="container-aex">
         <FadeIn className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
