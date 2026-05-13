@@ -164,11 +164,6 @@ export default function Hero() {
         }}
       />
 
-      {/* Architectural grid texture — heavily reduced */}
-      <div
-        aria-hidden
-        className="absolute inset-0 z-20 bg-grid-architectural bg-grid opacity-[0.4]"
-      />
       <div
         aria-hidden
         className="pointer-events-none absolute -bottom-32 -left-32 z-20 h-96 w-96 rounded-full bg-accent/10 blur-3xl"
