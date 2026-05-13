@@ -164,11 +164,6 @@ export default function Hero() {
         }}
       />
 
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -bottom-32 -left-32 z-20 h-96 w-96 rounded-full bg-accent/10 blur-3xl"
-      />
-
       <div className="container-aex relative z-30 grid w-full grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-8">
           <motion.div
