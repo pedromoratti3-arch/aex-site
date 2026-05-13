@@ -154,13 +154,7 @@ export default function Hero() {
             className="mt-6 max-w-4xl text-4xl font-bold leading-[1.05] tracking-tightest text-bone md:text-6xl lg:text-7xl"
           >
             Inteligência construtiva para{" "}
-            <span className="relative inline-block">
-              <span className="text-accent">galpões logísticos</span>
-              <span
-                aria-hidden
-                className="absolute -bottom-1 left-0 h-[3px] w-full rounded-sm bg-accent/40"
-              />
-            </span>{" "}
+            <span className="text-accent">galpões logísticos</span>{" "}
             e indústrias.
           </motion.h1>
 
