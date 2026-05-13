@@ -48,7 +48,7 @@ const CONTACT_INFO = [
     label: "Endereço",
     lines: [
       "Shopping Mestre Álvaro",
-      "Av. João Palácio, 300 — Salas 707 a 710",
+      "Av. João Palácio, 300 — Salas 707 a 712",
       "Eurico Salles · Serra-ES — CEP 29160-161",
     ],
   },
