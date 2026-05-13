@@ -15,7 +15,7 @@ function Logo() {
   return (
     <a
       href="#top"
-      className="group inline-flex items-center gap-3 transition-opacity duration-200 hover:opacity-80"
+      className="group inline-flex items-center transition-opacity duration-200 hover:opacity-80"
       aria-label="AEX | Inteligência Construtiva"
     >
       <Image
@@ -27,9 +27,6 @@ function Logo() {
         priority
         className="h-12 w-auto md:h-16"
       />
-      <span className="hidden border-l border-white/15 pl-3 text-xs font-medium uppercase tracking-[0.25em] text-steel-300 sm:inline">
-        Inteligência Construtiva
-      </span>
     </a>
   );
 }

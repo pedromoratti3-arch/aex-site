@@ -104,7 +104,7 @@ function StatItem({ stat, isLast }: { stat: Stat; isLast: boolean }) {
           {display}
         </span>
         {stat.unit && (
-          <span className="text-sm font-medium text-accent">{stat.unit}</span>
+          <span className="text-sm font-medium text-steel-300">{stat.unit}</span>
         )}
       </span>
       <span className="mt-1 text-xs uppercase tracking-[0.18em] text-steel-300">
