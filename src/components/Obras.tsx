@@ -15,7 +15,7 @@ type Obra = {
 const OBRAS: Obra[] = [
   { id: "aurora", title: "Aurora", type: "Galpão Logístico", area: "44.000 m²", img: "/obras/aurora-v2.webp" },
   { id: "zucchi", title: "Zucchi", type: "Galpão Logístico", area: "32.500 m²", img: "/obras/zucchi-v4.webp" },
-  { id: "medlevsohn", title: "MedLevensohn", type: "Indústria", area: "22.800 m²", img: "/obras/medlevsohn.webp" },
+  { id: "fibrasa", title: "Fibrasa", type: "Indústria", area: "41.600 m²", img: "/obras/fibrasa.webp" },
   { id: "jativi", title: "Jativi", type: "Galpão Logístico", area: "38.600 m²", img: "/obras/jativi.webp" },
   { id: "top-max", title: "Top Max", type: "Obra Comercial", area: "14.700 m²", img: "/obras/top-max.webp" },
   { id: "rdg-campo-log", title: "RDG · Campo Log", type: "Galpão Logístico", area: "51.300 m²", img: "/obras/rdg-campo-log.webp" },
@@ -24,7 +24,7 @@ const OBRAS: Obra[] = [
   { id: "aurora-log-3", title: "Aurora Log 3", type: "Galpão Logístico", area: "24.300 m²", img: "/obras/aurora-log-3.webp" },
   { id: "terlac", title: "Terlac", type: "Galpão Logístico", area: "18.500 m²", img: "/obras/terlac.webp" },
   { id: "viana-log", title: "Viana Log", type: "Galpão Logístico", area: "19.800 m²", img: "/obras/viana-log.webp" },
-  { id: "fibrasa", title: "Fibrasa", type: "Indústria", area: "41.600 m²", img: "/obras/fibrasa.webp" },
+  { id: "medlevsohn", title: "MedLevensohn", type: "Indústria", area: "22.800 m²", img: "/obras/medlevsohn.webp" },
   { id: "aurora-log-4", title: "Aurora Log 4", type: "Galpão Logístico", area: "35.200 m²", img: "/obras/aurora-log-4.webp" },
 ];
 
