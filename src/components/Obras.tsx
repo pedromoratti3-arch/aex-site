@@ -19,7 +19,7 @@ const OBRAS: Obra[] = [
   { id: "jativi", title: "Jativi", type: "Galpão Logístico", area: "38.600 m²", img: "/obras/jativi.webp" },
   { id: "top-max", title: "Top Max", type: "Obra Comercial", area: "14.700 m²", img: "/obras/top-max.webp" },
   { id: "rdg-campo-log", title: "RDG · Campo Log", type: "Galpão Logístico", area: "51.300 m²", img: "/obras/rdg-campo-log.webp" },
-  { id: "camplo-log-3", title: "Camplo Log 3", type: "Galpão Logístico", area: "52.000 m²", img: "/obras/camplo-log-3.webp" },
+  { id: "camplo-log-3", title: "Camplo Log 3", type: "Galpão Logístico", area: "52.000 m²", img: "/obras/camplo-log-3-v2.webp" },
   { id: "guindaste-centro-oeste", title: "Guindaste Centro Oeste", type: "Galpão Logístico", area: "27.900 m²", img: "/obras/guindaste-centro-oeste.webp" },
   { id: "aurora-log-4", title: "Aurora Log 4", type: "Galpão Logístico", area: "35.200 m²", img: "/obras/aurora-log-4.webp" },
   { id: "terlac", title: "Terlac", type: "Galpão Logístico", area: "18.500 m²", img: "/obras/terlac.webp" },
