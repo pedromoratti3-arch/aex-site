@@ -51,7 +51,7 @@ export default function About() {
           </ul>
         </FadeIn>
 
-        <FadeIn delay={0.15} className="order-1 lg:order-2 lg:self-center">
+        <FadeIn delay={0.15} className="order-1 lg:order-2 lg:self-start">
           <div className="relative lg:aspect-[3/4]">
             {/* Decorative frame echoing the swoosh */}
             <div
