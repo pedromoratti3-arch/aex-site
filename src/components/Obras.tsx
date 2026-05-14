@@ -21,11 +21,11 @@ const OBRAS: Obra[] = [
   { id: "rdg-campo-log", title: "RDG · Campo Log", type: "Galpão Logístico", area: "51.300 m²", img: "/obras/rdg-campo-log.webp" },
   { id: "camplo-log-3", title: "Camplo Log 3", type: "Galpão Logístico", area: "52.000 m²", img: "/obras/camplo-log-3-v2.webp" },
   { id: "guindaste-centro-oeste", title: "Guindaste Centro Oeste", type: "Galpão Logístico", area: "27.900 m²", img: "/obras/guindaste-centro-oeste.webp" },
-  { id: "aurora-log-4", title: "Aurora Log 4", type: "Galpão Logístico", area: "35.200 m²", img: "/obras/aurora-log-4.webp" },
+  { id: "aurora-log-3", title: "Aurora Log 3", type: "Galpão Logístico", area: "24.300 m²", img: "/obras/aurora-log-3.webp" },
   { id: "terlac", title: "Terlac", type: "Galpão Logístico", area: "18.500 m²", img: "/obras/terlac.webp" },
   { id: "viana-log", title: "Viana Log", type: "Galpão Logístico", area: "19.800 m²", img: "/obras/viana-log.webp" },
   { id: "fibrasa", title: "Fibrasa", type: "Indústria", area: "41.600 m²", img: "/obras/fibrasa.webp" },
-  { id: "aurora-log-3", title: "Aurora Log 3", type: "Galpão Logístico", area: "24.300 m²", img: "/obras/aurora-log-3.webp" },
+  { id: "aurora-log-4", title: "Aurora Log 4", type: "Galpão Logístico", area: "35.200 m²", img: "/obras/aurora-log-4.webp" },
 ];
 
 const DESKTOP_PAGE_SIZE = 6;
