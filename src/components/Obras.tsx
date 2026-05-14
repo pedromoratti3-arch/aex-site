@@ -14,7 +14,7 @@ type Obra = {
 
 const OBRAS: Obra[] = [
   { id: "aurora", title: "Aurora", type: "Galpão Logístico", area: "44.000 m²", img: "/obras/aurora-v2.webp" },
-  { id: "zucchi", title: "Zucchi", type: "Galpão Logístico", area: "32.500 m²", img: "/obras/zucchi-v3.webp" },
+  { id: "zucchi", title: "Zucchi", type: "Galpão Logístico", area: "32.500 m²", img: "/obras/zucchi-v4.webp" },
   { id: "medlevsohn", title: "MedLevensohn", type: "Indústria", area: "22.800 m²", img: "/obras/medlevsohn.webp" },
   { id: "jativi", title: "Jativi", type: "Galpão Logístico", area: "38.600 m²", img: "/obras/jativi.webp" },
   { id: "top-max", title: "Top Max", type: "Obra Comercial", area: "14.700 m²", img: "/obras/top-max.webp" },
