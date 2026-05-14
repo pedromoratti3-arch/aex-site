@@ -6,63 +6,27 @@ import { Plus } from "lucide-react";
 import FadeIn from "./FadeIn";
 
 type Obra = {
+  id: string;
   title: string;
   type: string;
   area: string;
   img: string;
 };
 
-/* TODO: trocar imagens placeholder por fotos reais das obras AEX */
-const PLACEHOLDER_GALPAO =
-  "https://placehold.co/800x600/0A0A0A/00D26A?text=Galp%C3%A3o+Log%C3%ADstico";
-
 const OBRAS: Obra[] = [
-  {
-    title: "Centro Logístico Serra Norte",
-    type: "Galpão Logístico",
-    area: "32.500 m²",
-    img: "https://placehold.co/800x600/0A0A0A/00D26A?text=Galp%C3%A3o+Log%C3%ADstico",
-  },
-  {
-    title: "Planta Industrial Vitória",
-    type: "Indústria",
-    area: "18.200 m²",
-    img: "https://placehold.co/800x600/0A0A0A/00D26A?text=Planta+Industrial",
-  },
-  {
-    title: "Centro de Distribuição ES",
-    type: "Galpão Logístico",
-    area: "44.000 m²",
-    img: "https://placehold.co/800x600/0A0A0A/00D26A?text=Centro+Distribui%C3%A7%C3%A3o",
-  },
-  {
-    title: "Complexo Comercial Cariacica",
-    type: "Obra Comercial",
-    area: "9.800 m²",
-    img: "https://placehold.co/800x600/0A0A0A/00D26A?text=Obra+Comercial",
-  },
-  {
-    title: "Indústria Metalúrgica Viana",
-    type: "Indústria",
-    area: "21.700 m²",
-    img: "https://placehold.co/800x600/0A0A0A/00D26A?text=Ind%C3%BAstria+Metal%C3%BArgica",
-  },
-  {
-    title: "Hub Logístico Civit",
-    type: "Galpão Logístico",
-    area: "27.300 m²",
-    img: "https://placehold.co/800x600/0A0A0A/00D26A?text=Hub+Log%C3%ADstico",
-  },
-  // Placeholders para testes visuais até as fotos reais chegarem
-  { title: "Galpão Logístico Linhares", type: "Galpão Logístico", area: "38.500 m²", img: PLACEHOLDER_GALPAO },
-  { title: "Centro de Operações Aracruz", type: "Galpão Logístico", area: "22.400 m²", img: PLACEHOLDER_GALPAO },
-  { title: "Plataforma Logística Sul ES", type: "Galpão Logístico", area: "51.200 m²", img: PLACEHOLDER_GALPAO },
-  { title: "Galpão Cross-Docking Vila Velha", type: "Galpão Logístico", area: "14.600 m²", img: PLACEHOLDER_GALPAO },
-  { title: "Polo Industrial Guarapari", type: "Galpão Logístico", area: "19.800 m²", img: PLACEHOLDER_GALPAO },
-  { title: "Hub Multimodal Norte", type: "Galpão Logístico", area: "36.700 m²", img: PLACEHOLDER_GALPAO },
-  { title: "Galpão Frigorífico São Mateus", type: "Galpão Logístico", area: "28.900 m²", img: PLACEHOLDER_GALPAO },
-  { title: "Centro de Distribuição Cachoeiro", type: "Galpão Logístico", area: "17.200 m²", img: PLACEHOLDER_GALPAO },
-  { title: "Plataforma Logística Colatina", type: "Galpão Logístico", area: "24.500 m²", img: PLACEHOLDER_GALPAO },
+  { id: "camplo-log-3", title: "Camplo Log 3", type: "Galpão Logístico", area: "52.000 m²", img: "/obras/camplo-log-3.webp" },
+  { id: "zucchi", title: "Zucchi", type: "Galpão Logístico", area: "32.500 m²", img: "/obras/zucchi.webp" },
+  { id: "medlevsohn", title: "MedLevensohn", type: "Indústria", area: "22.800 m²", img: "/obras/medlevsohn.webp" },
+  { id: "jativi", title: "Jativi", type: "Galpão Logístico", area: "38.600 m²", img: "/obras/jativi.webp" },
+  { id: "top-max", title: "Top Max", type: "Obra Comercial", area: "14.700 m²", img: "/obras/top-max.webp" },
+  { id: "rdg-campo-log", title: "RDG · Campo Log", type: "Galpão Logístico", area: "51.300 m²", img: "/obras/rdg-campo-log.webp" },
+  { id: "aurora", title: "Aurora", type: "Galpão Logístico", area: "44.000 m²", img: "/obras/aurora.webp" },
+  { id: "guindaste-centro-oeste", title: "Guindaste Centro Oeste", type: "Galpão Logístico", area: "27.900 m²", img: "/obras/guindaste-centro-oeste.webp" },
+  { id: "aurora-log-4", title: "Aurora Log 4", type: "Galpão Logístico", area: "35.200 m²", img: "/obras/aurora-log-4.webp" },
+  { id: "terlac", title: "Terlac", type: "Galpão Logístico", area: "18.500 m²", img: "/obras/terlac.webp" },
+  { id: "viana-log", title: "Viana Log", type: "Galpão Logístico", area: "19.800 m²", img: "/obras/viana-log.webp" },
+  { id: "fibrasa", title: "Fibrasa", type: "Indústria", area: "41.600 m²", img: "/obras/fibrasa.webp" },
+  { id: "aurora-log-3", title: "Aurora Log 3", type: "Galpão Logístico", area: "24.300 m²", img: "/obras/aurora-log-3.webp" },
 ];
 
 const DESKTOP_PAGE_SIZE = 6;
@@ -131,11 +95,10 @@ export default function Obras() {
           >
             {currentObras.map((obra) => (
               <article
-                key={obra.title}
+                key={obra.id}
                 className="group relative overflow-hidden border border-white/10 bg-steel-900/60 transition-all duration-300 hover:-translate-y-1 hover:border-accent"
               >
                 <div className="relative aspect-[4/3] w-full overflow-hidden bg-ink">
-                  {/* TODO: trocar imagens placeholder por fotos reais */}
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={obra.img}
