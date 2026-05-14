@@ -13,7 +13,7 @@ const PILLARS = [
 export default function About() {
   return (
     <section id="sobre" className="relative w-full bg-steel-900/40 py-20">
-      <div className="container-aex grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20">
+      <div className="container-aex grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-20">
         <FadeIn className="order-2 lg:order-1">
           <span className="eyebrow">Sobre a AEX</span>
           <h2 className="section-heading mt-4 text-bone">
@@ -51,8 +51,8 @@ export default function About() {
           </ul>
         </FadeIn>
 
-        <FadeIn delay={0.15} className="order-1 lg:order-2 lg:self-start">
-          <div className="relative lg:aspect-[3/4]">
+        <FadeIn delay={0.15} className="order-1 lg:order-2">
+          <div className="relative lg:ml-auto lg:aspect-[3/4] lg:max-w-[420px]">
             {/* Decorative frame echoing the swoosh */}
             <div
               aria-hidden
