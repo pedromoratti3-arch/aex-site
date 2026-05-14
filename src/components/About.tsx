@@ -52,7 +52,7 @@ export default function About() {
         </FadeIn>
 
         <FadeIn delay={0.15} className="order-1 lg:order-2 lg:self-center">
-          <div className="relative lg:aspect-video">
+          <div className="relative lg:aspect-[3/4]">
             {/* Decorative frame echoing the swoosh */}
             <div
               aria-hidden
