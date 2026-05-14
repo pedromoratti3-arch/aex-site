@@ -51,8 +51,8 @@ export default function About() {
           </ul>
         </FadeIn>
 
-        <FadeIn delay={0.15} className="order-1 lg:order-2">
-          <div className="relative">
+        <FadeIn delay={0.15} className="order-1 lg:order-2 lg:self-center">
+          <div className="relative lg:aspect-video">
             {/* Decorative frame echoing the swoosh */}
             <div
               aria-hidden
@@ -66,7 +66,7 @@ export default function About() {
             <img
               src="https://placehold.co/600x800/0A0A0A/FFFFFF?text=AEX+%7C+Obra+industrial"
               alt="Obra industrial AEX em execução"
-              className="relative h-auto w-full grayscale-[20%] saturate-[1.05]"
+              className="relative h-auto w-full grayscale-[20%] saturate-[1.05] lg:h-full lg:object-cover"
               loading="lazy"
             />
             <div
