@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Plus } from "lucide-react";
 import FadeIn from "./FadeIn";
 
 type Obra = {
@@ -14,13 +13,13 @@ type Obra = {
 };
 
 const OBRAS: Obra[] = [
-  { id: "camplo-log-3", title: "Camplo Log 3", type: "Galpão Logístico", area: "52.000 m²", img: "/obras/camplo-log-3.webp" },
+  { id: "aurora", title: "Aurora", type: "Galpão Logístico", area: "44.000 m²", img: "/obras/aurora.webp" },
   { id: "zucchi", title: "Zucchi", type: "Galpão Logístico", area: "32.500 m²", img: "/obras/zucchi.webp" },
   { id: "medlevsohn", title: "MedLevensohn", type: "Indústria", area: "22.800 m²", img: "/obras/medlevsohn.webp" },
   { id: "jativi", title: "Jativi", type: "Galpão Logístico", area: "38.600 m²", img: "/obras/jativi.webp" },
   { id: "top-max", title: "Top Max", type: "Obra Comercial", area: "14.700 m²", img: "/obras/top-max.webp" },
   { id: "rdg-campo-log", title: "RDG · Campo Log", type: "Galpão Logístico", area: "51.300 m²", img: "/obras/rdg-campo-log.webp" },
-  { id: "aurora", title: "Aurora", type: "Galpão Logístico", area: "44.000 m²", img: "/obras/aurora.webp" },
+  { id: "camplo-log-3", title: "Camplo Log 3", type: "Galpão Logístico", area: "52.000 m²", img: "/obras/camplo-log-3.webp" },
   { id: "guindaste-centro-oeste", title: "Guindaste Centro Oeste", type: "Galpão Logístico", area: "27.900 m²", img: "/obras/guindaste-centro-oeste.webp" },
   { id: "aurora-log-4", title: "Aurora Log 4", type: "Galpão Logístico", area: "35.200 m²", img: "/obras/aurora-log-4.webp" },
   { id: "terlac", title: "Terlac", type: "Galpão Logístico", area: "18.500 m²", img: "/obras/terlac.webp" },
@@ -110,12 +109,6 @@ export default function Obras() {
                     aria-hidden
                     className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent opacity-80"
                   />
-                  <span className="absolute right-4 top-4 inline-flex h-9 w-9 items-center justify-center rounded-sm bg-ink/70 text-bone backdrop-blur-sm ring-1 ring-white/10 transition-all duration-300 group-hover:bg-accent group-hover:text-ink group-hover:ring-accent">
-                    <Plus
-                      size={16}
-                      className="transition-transform duration-300 group-hover:rotate-90"
-                    />
-                  </span>
                 </div>
 
                 <div className="p-6">
