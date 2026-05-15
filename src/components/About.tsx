@@ -6,7 +6,7 @@ import FadeIn from "./FadeIn";
 const PILLARS = [
   "Engenharia técnica de alta performance",
   "Gestão de obras de alta complexidade",
-  "Soluções integradas em construção civil",
+  "Liderança técnica direta dos sócios fundadores",
   "Planejamento estratégico e metodologias modernas",
 ];
 
