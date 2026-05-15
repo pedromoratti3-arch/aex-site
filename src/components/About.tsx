@@ -66,7 +66,7 @@ export default function About() {
             <img
               src="https://placehold.co/600x800/0A0A0A/FFFFFF?text=AEX+%7C+Obra+industrial"
               alt="Obra industrial AEX em execução"
-              className="relative h-full w-full object-cover grayscale-[20%] saturate-[1.05]"
+              className="block h-auto w-full object-cover grayscale-[20%] saturate-[1.05] lg:absolute lg:inset-0 lg:h-full"
               loading="lazy"
             />
             <div
