@@ -6,7 +6,7 @@ import FadeIn from "./FadeIn";
 const PILLARS = [
   "Engenharia técnica de alta performance",
   "Gestão de obras de alta complexidade",
-  "Soluções integradas em construção civil",
+  "Liderança técnica direta dos sócios fundadores",
   "Planejamento estratégico e metodologias modernas",
 ];
 
@@ -22,17 +22,19 @@ export default function About() {
           </h2>
           <div className="mt-6 h-px w-16 bg-accent" />
           <p className="mt-8 text-base leading-relaxed text-steel-200 md:text-lg">
-            A AEX é uma empresa de engenharia sediada na Serra, no Espírito
-            Santo, com forte atuação em toda a região metropolitana de Vitória.
-            Somos especialistas em obras de alta complexidade — galpões
-            logísticos, indústrias e empreendimentos comerciais — e expandimos
-            progressivamente nossas operações para outros estados brasileiros,
-            levando nossa metodologia técnica para além do ES.
+            A AEX Inteligência Construtiva foi fundada em 2021, com sede em
+            Serra, no Espírito Santo, e atua em todo o Brasil. A empresa
+            concentra arquitetura, engenharia, gerenciamento e construção em uma
+            única estrutura, com especialização em obras industriais e
+            logísticas de grande porte.
           </p>
           <p className="mt-4 text-base leading-relaxed text-steel-200 md:text-lg">
-            Nossa abordagem combina planejamento estratégico, metodologias
-            modernas de gestão e um corpo técnico que conhece, na prática, o que
-            é viabilizar uma obra industrial dentro do prazo e do orçamento.
+            A AEX é liderada por seus sócios fundadores, Arq. Marcelo Pignaton e
+            Eng. Mirko Moratti, à frente de um corpo técnico especializado em
+            obras industriais, logísticas e comerciais. O modelo integra
+            arquitetura, engenharia, gerenciamento e construção sob uma mesma
+            coordenação, com decisões técnicas orientadas pelo desempenho
+            operacional do empreendimento.
           </p>
 
           <ul className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2">
