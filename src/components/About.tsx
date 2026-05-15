@@ -13,7 +13,7 @@ const PILLARS = [
 export default function About() {
   return (
     <section id="sobre" className="relative w-full bg-steel-900/40 py-20">
-      <div className="container-aex grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20">
+      <div className="container-aex grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20">
         <FadeIn className="order-2 lg:order-1">
           <span className="eyebrow">Sobre a AEX</span>
           <h2 className="section-heading mt-4 text-bone">
@@ -51,8 +51,8 @@ export default function About() {
           </ul>
         </FadeIn>
 
-        <FadeIn delay={0.15} className="order-1 lg:order-2">
-          <div className="relative">
+        <FadeIn delay={0.15} className="order-1 h-full lg:order-2">
+          <div className="relative h-full">
             {/* Decorative frame echoing the swoosh */}
             <div
               aria-hidden
@@ -66,7 +66,7 @@ export default function About() {
             <img
               src="https://placehold.co/600x800/0A0A0A/FFFFFF?text=AEX+%7C+Obra+industrial"
               alt="Obra industrial AEX em execução"
-              className="relative h-auto w-full grayscale-[20%] saturate-[1.05]"
+              className="relative h-full w-full object-cover grayscale-[20%] saturate-[1.05]"
               loading="lazy"
             />
             <div
