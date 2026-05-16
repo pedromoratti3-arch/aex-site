@@ -5,8 +5,32 @@
  * implementação dedicada com Framer Motion ou GSAP ScrollTrigger.
  */
 
+import { motion } from "framer-motion";
 import { ClipboardList, MapPinned, Factory } from "lucide-react";
 import FadeIn from "./FadeIn";
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+};
 
 const STAGES = [
   {
@@ -57,11 +81,17 @@ export default function AnimationSection() {
           </p>
         </FadeIn>
 
-        <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-3">
+        <motion.div
+          className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-3"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
           {STAGES.map((stage, i) => {
             const Icon = stage.icon;
             return (
-              <FadeIn key={stage.label} delay={i * 0.12}>
+              <motion.div key={stage.label} variants={cardVariants}>
                 <article className="group relative flex h-full flex-col justify-between border border-white/10 bg-steel-900/60 p-8 transition-colors hover:border-accent/60">
                   <div>
                     <div className="flex items-center justify-between">
@@ -85,10 +115,10 @@ export default function AnimationSection() {
                     className="absolute right-4 top-4 h-[3px] w-3 rotate-45 rounded-sm bg-accent opacity-0 transition-all duration-300 group-hover:w-7 group-hover:opacity-100"
                   />
                 </article>
-              </FadeIn>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
