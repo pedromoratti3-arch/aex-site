@@ -106,7 +106,7 @@ export default function AnimationSection() {
               variants={cardVariants}
               className="h-full"
             >
-              <article className="group relative flex h-full flex-col overflow-hidden border border-white/10 bg-steel-900/60 transition-colors hover:border-accent/60">
+              <article className="group relative flex h-full flex-col overflow-hidden border border-white/10 bg-steel-900/60">
                 {stage.image ? (
                   <div className="relative aspect-video w-full overflow-hidden">
                     <Image
@@ -134,11 +134,6 @@ export default function AnimationSection() {
                     {stage.description}
                   </p>
                 </div>
-
-                <span
-                  aria-hidden
-                  className="absolute right-4 top-4 h-[3px] w-3 rotate-45 rounded-sm bg-accent opacity-0 transition-all duration-300 group-hover:w-7 group-hover:opacity-100"
-                />
               </article>
             </motion.div>
           ))}
