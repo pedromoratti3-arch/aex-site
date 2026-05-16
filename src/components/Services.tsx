@@ -1,29 +1,69 @@
 "use client";
 
-import { ArrowUpRight, Warehouse, Factory, Building2 } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowUpRight, Check } from "lucide-react";
 import FadeIn from "./FadeIn";
 
-const SERVICES = [
+const imageVariants = (fromLeft: boolean) => ({
+  hidden: { opacity: 0, x: fromLeft ? -48 : 48 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.7,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+});
+
+const textVariants = (fromLeft: boolean) => ({
+  hidden: { opacity: 0, x: fromLeft ? -48 : 48 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.7,
+      ease: [0.16, 1, 0.3, 1],
+      delay: 0.2,
+    },
+  },
+});
+
+type Service = {
+  title: string;
+  description: string;
+  bullets: string[];
+  image: string;
+  alt: string;
+};
+
+const SERVICES: Service[] = [
   {
-    icon: Warehouse,
     title: "Galpões Logísticos",
     description:
       "Estruturas de grande porte para operações de armazenagem e distribuição. Engenharia dimensionada para fluxo, carga e expansão.",
     bullets: ["Estrutura metálica", "Pisos de alta resistência", "Docas e pátio"],
+    image:
+      "https://placehold.co/1600x900/0F0F0F/525252?text=Foto+%C2%B7+Galp%C3%B5es+Log%C3%ADsticos",
+    alt: "Foto · Galpões Logísticos",
   },
   {
-    icon: Factory,
     title: "Indústrias",
     description:
       "Plantas industriais executadas com rigor técnico — da fundação às utilidades. Coordenação total entre disciplinas.",
     bullets: ["Layout fabril", "Infraestrutura crítica", "Compliance técnico"],
+    image:
+      "https://placehold.co/1600x900/0F0F0F/525252?text=Foto+%C2%B7+Ind%C3%BAstrias",
+    alt: "Foto · Indústrias",
   },
   {
-    icon: Building2,
     title: "Obras Comerciais",
     description:
       "Empreendimentos comerciais de alto padrão, com gestão integrada de prazo, custo e qualidade do começo ao habite-se.",
     bullets: ["Retrofit e expansão", "Acabamentos premium", "Gestão completa"],
+    image:
+      "https://placehold.co/1600x900/0F0F0F/525252?text=Foto+%C2%B7+Obras+Comerciais",
+    alt: "Foto · Obras Comerciais",
   },
 ];
 
@@ -43,53 +83,68 @@ export default function Services() {
           <div className="mt-6 h-px w-16 bg-accent" />
         </FadeIn>
 
-        <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="mt-16 space-y-16 lg:mt-24 lg:space-y-32">
           {SERVICES.map((service, i) => {
-            const Icon = service.icon;
+            const imageOnLeft = i % 2 === 0;
             return (
-              <FadeIn key={service.title} delay={i * 0.1}>
-                <article className="group relative flex h-full flex-col border border-white/10 bg-ink p-8 transition-all duration-300 hover:-translate-y-1 hover:border-accent">
-                  {/* Top swoosh accent */}
-                  <span
-                    aria-hidden
-                    className="absolute right-6 top-6 h-[3px] w-4 rotate-45 rounded-sm bg-accent transition-all duration-300 group-hover:w-8"
-                  />
-
-                  <div className="mb-8 inline-flex h-14 w-14 items-center justify-center rounded-sm bg-accent/10 text-accent ring-1 ring-accent/30 transition-all duration-300 group-hover:bg-accent group-hover:text-ink group-hover:ring-accent">
-                    <Icon size={26} strokeWidth={1.6} />
+              <motion.div
+                key={service.title}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.25 }}
+                className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16"
+              >
+                <motion.div
+                  variants={imageVariants(imageOnLeft)}
+                  className={imageOnLeft ? "lg:order-1" : "lg:order-2"}
+                >
+                  <div className="relative aspect-video w-full overflow-hidden rounded-2xl">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={service.image}
+                      alt={service.alt}
+                      className="h-full w-full object-cover"
+                    />
                   </div>
+                </motion.div>
 
-                  <h3 className="text-2xl font-bold tracking-tight text-bone">
+                <motion.div
+                  variants={textVariants(!imageOnLeft)}
+                  className={imageOnLeft ? "lg:order-2" : "lg:order-1"}
+                >
+                  <h3 className="text-3xl font-bold tracking-tight text-bone lg:text-4xl">
                     {service.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-steel-200">
+                  <p className="mt-4 text-base leading-relaxed text-steel-200 lg:text-lg">
                     {service.description}
                   </p>
-
-                  <ul className="mt-6 space-y-2 border-t border-white/5 pt-6">
+                  <ul className="mt-6 space-y-3">
                     {service.bullets.map((b) => (
                       <li
                         key={b}
-                        className="flex items-center gap-2 text-xs text-steel-300"
+                        className="flex items-center gap-3 text-sm text-steel-100"
                       >
-                        <span className="h-1 w-1 rounded-full bg-accent" />
-                        {b}
+                        <Check
+                          size={20}
+                          strokeWidth={2}
+                          className="flex-none text-accent"
+                        />
+                        <span>{b}</span>
                       </li>
                     ))}
                   </ul>
-
                   <a
                     href="#contato"
-                    className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-bone transition-colors group-hover:text-accent"
+                    className="group mt-8 inline-flex items-center gap-2 text-sm font-medium text-accent transition-colors hover:text-accent-hover"
                   >
                     Saber mais
                     <ArrowUpRight
                       size={16}
-                      className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                     />
                   </a>
-                </article>
-              </FadeIn>
+                </motion.div>
+              </motion.div>
             );
           })}
         </div>
