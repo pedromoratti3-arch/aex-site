@@ -5,7 +5,7 @@ import { ArrowUpRight, Check } from "lucide-react";
 import FadeIn from "./FadeIn";
 
 const imageVariants = (fromLeft: boolean) => ({
-  hidden: { opacity: 0, x: fromLeft ? -48 : 48 },
+  hidden: { opacity: 0, x: fromLeft ? -32 : 32 },
   visible: {
     opacity: 1,
     x: 0,
@@ -17,7 +17,7 @@ const imageVariants = (fromLeft: boolean) => ({
 });
 
 const textVariants = (fromLeft: boolean) => ({
-  hidden: { opacity: 0, x: fromLeft ? -48 : 48 },
+  hidden: { opacity: 0, x: fromLeft ? -32 : 32 },
   visible: {
     opacity: 1,
     x: 0,
@@ -71,7 +71,7 @@ export default function Services() {
   return (
     <section
       id="servicos"
-      className="relative w-full border-t border-white/5 bg-steel-900/40 py-20"
+      className="relative w-full overflow-hidden border-t border-white/5 bg-steel-900/40 py-20"
     >
       <div className="container-aex">
         <FadeIn className="max-w-3xl">
@@ -83,7 +83,7 @@ export default function Services() {
           <div className="mt-6 h-px w-16 bg-accent" />
         </FadeIn>
 
-        <div className="mt-16 space-y-16 lg:mt-24 lg:space-y-32">
+        <div className="mt-16 space-y-6 lg:space-y-8">
           {SERVICES.map((service, i) => {
             const imageOnLeft = i % 2 === 0;
             return (
@@ -92,37 +92,39 @@ export default function Services() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.25 }}
-                className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16"
+                className="grid overflow-hidden rounded-2xl border border-white/5 bg-[#0F0F0F] lg:grid-cols-2"
               >
                 <motion.div
                   variants={imageVariants(imageOnLeft)}
-                  className={imageOnLeft ? "lg:order-1" : "lg:order-2"}
+                  className={`relative aspect-video lg:aspect-auto lg:h-full ${
+                    imageOnLeft ? "lg:order-1" : "lg:order-2"
+                  }`}
                 >
-                  <div className="relative aspect-video w-full overflow-hidden rounded-2xl">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={service.image}
-                      alt={service.alt}
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={service.image}
+                    alt={service.alt}
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
                 </motion.div>
 
                 <motion.div
                   variants={textVariants(!imageOnLeft)}
-                  className={imageOnLeft ? "lg:order-2" : "lg:order-1"}
+                  className={`flex flex-col justify-center p-8 lg:p-10 ${
+                    imageOnLeft ? "lg:order-2" : "lg:order-1"
+                  }`}
                 >
-                  <h3 className="text-3xl font-bold tracking-tight text-bone lg:text-4xl">
+                  <h3 className="mb-4 text-2xl font-bold tracking-tight text-bone lg:text-3xl">
                     {service.title}
                   </h3>
-                  <p className="mt-4 text-base leading-relaxed text-steel-200 lg:text-lg">
+                  <p className="mb-6 text-base leading-relaxed text-steel-200">
                     {service.description}
                   </p>
-                  <ul className="mt-6 space-y-3">
+                  <ul className="mb-6 space-y-3">
                     {service.bullets.map((b) => (
                       <li
                         key={b}
-                        className="flex items-center gap-3 text-sm text-steel-100"
+                        className="flex items-center gap-3 text-sm text-steel-100 lg:text-base"
                       >
                         <Check
                           size={20}
@@ -135,13 +137,10 @@ export default function Services() {
                   </ul>
                   <a
                     href="#contato"
-                    className="group mt-8 inline-flex items-center gap-2 text-sm font-medium text-accent transition-colors hover:text-accent-hover"
+                    className="inline-flex items-center gap-2 text-sm font-medium text-accent transition-all hover:gap-3 hover:text-accent-hover"
                   >
                     Saber mais
-                    <ArrowUpRight
-                      size={16}
-                      className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                    />
+                    <ArrowUpRight size={18} />
                   </a>
                 </motion.div>
               </motion.div>
