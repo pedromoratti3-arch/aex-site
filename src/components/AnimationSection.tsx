@@ -77,7 +77,7 @@ export default function AnimationSection() {
     >
       <div
         aria-hidden
-        className="absolute inset-0 bg-grid-architectural bg-grid opacity-60"
+        className="absolute inset-0 bg-grid-architectural bg-grid opacity-60 [mask-image:linear-gradient(to_bottom,transparent_0%,black_15%,black_85%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,black_15%,black_85%,transparent_100%)]"
       />
 
       <div className="container-aex relative z-10">
