@@ -48,7 +48,8 @@ export default function AnimationSection() {
         <FadeIn className="mx-auto max-w-2xl text-center">
           <span className="eyebrow">Da planta à entrega</span>
           <h2 className="section-heading mt-4">
-            O processo que sustenta cada metro quadrado.
+            O processo que sustenta cada{" "}
+            <span className="text-accent">metro quadrado</span>.
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-steel-200">
             Um fluxo único, controlado fim a fim — projeto, terreno e estrutura
