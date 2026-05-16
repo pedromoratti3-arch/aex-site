@@ -119,7 +119,7 @@ export default function Footer() {
 
       <div className="border-t border-white/5">
         <div className="container-aex flex flex-col items-start justify-between gap-2 py-6 text-xs text-steel-400 md:flex-row md:items-center">
-          <p>© 2025 AEX | Inteligência Construtiva. Todos os direitos reservados.</p>
+          <p>© 2026 AEX | Inteligência Construtiva. Todos os direitos reservados.</p>
           <p className="text-xs text-white/40">CNPJ: 40.581.277/0001-70</p>
         </div>
       </div>
