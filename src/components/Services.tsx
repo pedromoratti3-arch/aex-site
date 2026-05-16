@@ -58,61 +58,85 @@ const SERVICES: Service[] = [
   },
 ];
 
-function ServiceCard({ service }: { service: Service }) {
-  const { featured } = service;
+function FeaturedServiceCard({ service }: { service: Service }) {
   return (
     <motion.div
       variants={cardVariants}
-      className={`flex h-full flex-col rounded-2xl border border-white/5 bg-[#0F0F0F] ${
-        featured
-          ? "p-8 lg:col-span-2 lg:row-span-2 lg:p-10"
-          : "p-6 lg:p-8"
-      }`}
+      className="rounded-2xl border border-white/5 bg-[#0F0F0F] p-8 lg:col-span-2 lg:p-10"
+    >
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1.2fr_1fr] lg:gap-12">
+        <div className="flex flex-col">
+          <h3 className="text-3xl font-bold tracking-tight text-bone lg:text-4xl">
+            {service.title}
+          </h3>
+          <p className="mt-4 text-base leading-relaxed text-neutral-400 lg:mt-6 lg:text-lg">
+            {service.description}
+          </p>
+
+          <div className="mt-auto pt-6 lg:pt-8">
+            <a
+              href="#contato"
+              className="inline-flex items-center gap-2 text-base font-medium text-accent transition-all hover:gap-3 hover:text-accent-hover"
+            >
+              Saber mais
+              <ArrowUpRight size={18} />
+            </a>
+          </div>
+        </div>
+
+        <div className="flex flex-col justify-center lg:border-l lg:border-white/5 lg:pl-12">
+          <ul className="space-y-4">
+            {service.bullets.map((b) => (
+              <li key={b} className="flex items-start gap-3">
+                <Check
+                  size={20}
+                  strokeWidth={2}
+                  className="mt-0.5 shrink-0 text-accent"
+                />
+                <span className="text-base text-neutral-300">{b}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+function ServiceCard({ service }: { service: Service }) {
+  return (
+    <motion.div
+      variants={cardVariants}
+      className="flex h-full flex-col rounded-2xl border border-white/5 bg-[#0F0F0F] p-6 lg:p-8"
     >
       <div>
-        <h3
-          className={`font-bold tracking-tight text-bone ${
-            featured ? "text-3xl lg:text-4xl" : "text-xl lg:text-2xl"
-          }`}
-        >
+        <h3 className="text-xl font-bold tracking-tight text-bone lg:text-2xl">
           {service.title}
         </h3>
-        <p
-          className={`mt-4 leading-relaxed text-neutral-400 ${
-            featured ? "text-base lg:text-lg" : "text-sm lg:text-base"
-          }`}
-        >
+        <p className="mt-4 text-sm leading-relaxed text-neutral-400 lg:text-base">
           {service.description}
         </p>
       </div>
 
-      <div className="mt-6 border-t border-white/5 pt-6 lg:mt-8 lg:pt-8">
+      <div className="mt-6 border-t border-white/5 pt-6">
         <ul className="space-y-3">
           {service.bullets.map((b) => (
             <li key={b} className="flex items-start gap-3">
               <Check
-                size={featured ? 20 : 16}
+                size={16}
                 strokeWidth={2}
                 className="mt-0.5 shrink-0 text-accent"
               />
-              <span
-                className={`text-neutral-300 ${
-                  featured ? "text-base" : "text-sm"
-                }`}
-              >
-                {b}
-              </span>
+              <span className="text-sm text-neutral-300">{b}</span>
             </li>
           ))}
         </ul>
       </div>
 
-      <div className="mt-auto pt-6 lg:pt-8">
+      <div className="mt-auto pt-6">
         <a
           href="#contato"
-          className={`inline-flex items-center gap-2 font-medium text-accent transition-all hover:gap-3 hover:text-accent-hover ${
-            featured ? "text-base" : "text-sm"
-          }`}
+          className="inline-flex items-center gap-2 text-sm font-medium text-accent transition-all hover:gap-3 hover:text-accent-hover"
         >
           Saber mais
           <ArrowUpRight size={16} />
@@ -143,11 +167,15 @@ export default function Services() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
-          className="mx-auto mt-16 grid max-w-7xl grid-cols-1 gap-6 lg:grid-cols-3 lg:grid-rows-2 lg:gap-8"
+          className="mx-auto mt-16 grid max-w-7xl grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-8"
         >
-          {SERVICES.map((service) => (
-            <ServiceCard key={service.title} service={service} />
-          ))}
+          {SERVICES.map((service) =>
+            service.featured ? (
+              <FeaturedServiceCard key={service.title} service={service} />
+            ) : (
+              <ServiceCard key={service.title} service={service} />
+            ),
+          )}
         </motion.div>
       </div>
     </section>
