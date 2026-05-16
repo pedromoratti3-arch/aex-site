@@ -6,7 +6,8 @@
  */
 
 import { motion } from "framer-motion";
-import { ClipboardList, MapPinned, Factory } from "lucide-react";
+import Image from "next/image";
+import { ClipboardList } from "lucide-react";
 import FadeIn from "./FadeIn";
 
 const containerVariants = {
@@ -32,27 +33,38 @@ const cardVariants = {
   },
 };
 
-const STAGES = [
+type Stage = {
+  label: string;
+  title: string;
+  description: string;
+  image: string | null;
+  alt: string;
+};
+
+const STAGES: Stage[] = [
   {
-    icon: ClipboardList,
     label: "Planta",
     title: "Projeto técnico",
     description:
       "Levantamento, modelagem e validação de cada detalhe construtivo antes de qualquer movimentação.",
+    image: null,
+    alt: "",
   },
   {
-    icon: MapPinned,
     label: "Terreno",
     title: "Preparação do solo",
     description:
       "Topografia, terraplenagem e fundações dimensionadas para a complexidade da carga prevista.",
+    image: "/processos/processo-terreno.webp",
+    alt: "Terraplanagem em obra AEX",
   },
   {
-    icon: Factory,
     label: "Galpão",
     title: "Execução completa",
     description:
       "Estrutura, fechamentos, infraestrutura e entrega operacional dentro do prazo contratado.",
+    image: "/processos/processo-galpao.webp",
+    alt: "Estrutura metálica em montagem",
   },
 ];
 
@@ -88,36 +100,48 @@ export default function AnimationSection() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
         >
-          {STAGES.map((stage, i) => {
-            const Icon = stage.icon;
-            return (
-              <motion.div key={stage.label} variants={cardVariants}>
-                <article className="group relative flex h-full flex-col justify-between border border-white/10 bg-steel-900/60 p-8 transition-colors hover:border-accent/60">
-                  <div>
-                    <div className="flex items-center justify-between">
-                      <span className="inline-flex h-12 w-12 items-center justify-center rounded-sm bg-accent/10 text-accent ring-1 ring-accent/30 transition-colors group-hover:bg-accent group-hover:text-ink">
-                        <Icon size={22} />
-                      </span>
-                      <span className="text-xs font-medium uppercase tracking-[0.2em] text-steel-300">
-                        {String(i + 1).padStart(2, "0")} · {stage.label}
-                      </span>
-                    </div>
-                    <h3 className="mt-8 text-2xl font-bold tracking-tight text-bone">
-                      {stage.title}
-                    </h3>
-                    <p className="mt-3 text-sm leading-relaxed text-steel-200">
-                      {stage.description}
-                    </p>
+          {STAGES.map((stage, i) => (
+            <motion.div
+              key={stage.label}
+              variants={cardVariants}
+              className="h-full"
+            >
+              <article className="group relative flex h-full flex-col overflow-hidden border border-white/10 bg-steel-900/60 transition-colors hover:border-accent/60">
+                {stage.image ? (
+                  <div className="relative aspect-video w-full overflow-hidden">
+                    <Image
+                      src={stage.image}
+                      alt={stage.alt}
+                      fill
+                      sizes="(min-width: 768px) 33vw, 100vw"
+                      className="object-cover"
+                    />
                   </div>
+                ) : (
+                  <div className="flex aspect-video w-full items-center justify-center bg-accent/10">
+                    <ClipboardList size={56} className="text-accent/50" />
+                  </div>
+                )}
 
-                  <span
-                    aria-hidden
-                    className="absolute right-4 top-4 h-[3px] w-3 rotate-45 rounded-sm bg-accent opacity-0 transition-all duration-300 group-hover:w-7 group-hover:opacity-100"
-                  />
-                </article>
-              </motion.div>
-            );
-          })}
+                <div className="flex flex-1 flex-col p-6 md:p-8">
+                  <span className="text-xs font-medium uppercase tracking-[0.2em] text-accent/80">
+                    {String(i + 1).padStart(2, "0")} · {stage.label}
+                  </span>
+                  <h3 className="mt-3 text-2xl font-bold tracking-tight text-bone">
+                    {stage.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-steel-200">
+                    {stage.description}
+                  </p>
+                </div>
+
+                <span
+                  aria-hidden
+                  className="absolute right-4 top-4 h-[3px] w-3 rotate-45 rounded-sm bg-accent opacity-0 transition-all duration-300 group-hover:w-7 group-hover:opacity-100"
+                />
+              </article>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>
