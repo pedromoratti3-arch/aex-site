@@ -9,19 +9,18 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
+      staggerChildren: 0.1,
       delayChildren: 0.1,
     },
   },
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, scale: 0.97 },
+  hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    scale: 1,
     transition: {
-      duration: 0.7,
+      duration: 0.6,
       ease: [0.16, 1, 0.3, 1],
     },
   },
@@ -75,49 +74,46 @@ export default function Services() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
-          className="mx-auto mt-16 max-w-5xl space-y-6 lg:space-y-8"
+          className="mx-auto mt-16 grid max-w-7xl gap-6 lg:grid-cols-3 lg:gap-8"
         >
-          {SERVICES.map((service, i) => (
+          {SERVICES.map((service) => (
             <motion.div
               key={service.title}
               variants={cardVariants}
-              className="overflow-hidden rounded-2xl border border-white/5 bg-[#0F0F0F] p-8 lg:p-12"
+              className="flex h-full flex-col rounded-2xl border border-white/5 bg-[#0F0F0F] p-8 lg:p-10"
             >
-              <div className="grid items-center gap-8 lg:grid-cols-[auto_1fr] lg:gap-16">
-                <div className="select-none text-[120px] font-light leading-none tracking-tighter text-accent/15 lg:text-[180px]">
-                  {String(i + 1).padStart(2, "0")}
-                </div>
+              <div>
+                <h3 className="text-2xl font-bold tracking-tight text-bone">
+                  {service.title}
+                </h3>
+                <p className="mt-4 text-base leading-relaxed text-neutral-400">
+                  {service.description}
+                </p>
+              </div>
 
-                <div className="space-y-4 lg:space-y-6">
-                  <h3 className="text-2xl font-bold tracking-tight text-bone lg:text-3xl">
-                    {service.title}
-                  </h3>
-                  <p className="text-base leading-relaxed text-steel-200">
-                    {service.description}
-                  </p>
-                  <ul className="space-y-3">
-                    {service.bullets.map((b) => (
-                      <li
-                        key={b}
-                        className="flex items-center gap-3 text-sm text-steel-100 lg:text-base"
-                      >
-                        <Check
-                          size={20}
-                          strokeWidth={2}
-                          className="flex-none text-accent"
-                        />
-                        <span>{b}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <a
-                    href="#contato"
-                    className="inline-flex items-center gap-2 pt-2 text-sm font-medium text-accent transition-all hover:gap-3 hover:text-accent-hover"
-                  >
-                    Saber mais
-                    <ArrowUpRight size={18} />
-                  </a>
-                </div>
+              <div className="mt-8 border-t border-white/5 pt-8">
+                <ul className="space-y-3">
+                  {service.bullets.map((b) => (
+                    <li key={b} className="flex items-start gap-3">
+                      <Check
+                        size={20}
+                        strokeWidth={2}
+                        className="mt-0.5 shrink-0 text-accent"
+                      />
+                      <span className="text-sm text-neutral-300">{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="mt-auto pt-8">
+                <a
+                  href="#contato"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-accent transition-all hover:gap-3 hover:text-accent-hover"
+                >
+                  Saber mais
+                  <ArrowUpRight size={16} />
+                </a>
               </div>
             </motion.div>
           ))}
