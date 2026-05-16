@@ -77,7 +77,7 @@ export default function AnimationSection() {
     >
       <div
         aria-hidden
-        className="absolute inset-0 bg-grid-architectural bg-grid opacity-30"
+        className="absolute inset-0 bg-grid-architectural bg-grid opacity-60"
       />
 
       <div className="container-aex relative z-10">
