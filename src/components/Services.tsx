@@ -116,10 +116,10 @@ export default function Services() {
                     <div className="mt-6">
                       <a
                         href="#contato"
-                        className="inline-flex items-center gap-2 text-sm font-medium text-accent transition-all hover:gap-3 hover:text-accent-hover"
+                        className="inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-all hover:gap-2 hover:text-accent-hover"
                       >
                         Saber mais
-                        <ArrowUpRight size={16} />
+                        <ArrowUpRight size={14} />
                       </a>
                     </div>
                   </div>
