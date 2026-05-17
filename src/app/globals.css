@@ -56,6 +56,20 @@ body {
   }
 }
 
+/* Service cards — fixed background image on desktop only */
+.servico-card-bg {
+  background-color: #0f0f0f;
+}
+
+@media (min-width: 1024px) {
+  .servico-card-bg {
+    background-image: url("/obras/zucchi-v4.webp");
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+  }
+}
+
 /* Reusable AEX swoosh — the green corner stroke from the logo */
 .aex-swoosh {
   position: relative;

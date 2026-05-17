@@ -31,7 +31,6 @@ type Service = {
   title: string;
   description: string;
   bullets: string[];
-  backgroundPosition: string;
 };
 
 const SERVICES: Service[] = [
@@ -40,21 +39,18 @@ const SERVICES: Service[] = [
     description:
       "Estruturas de grande porte para operações de armazenagem e distribuição. Engenharia dimensionada para fluxo, carga e expansão.",
     bullets: ["Estrutura metálica", "Pisos de alta resistência", "Docas e pátio"],
-    backgroundPosition: "0% 0%",
   },
   {
     title: "Indústrias",
     description:
       "Plantas industriais executadas com rigor técnico — da fundação às utilidades. Coordenação total entre disciplinas.",
     bullets: ["Layout fabril", "Infraestrutura crítica", "Compliance técnico"],
-    backgroundPosition: "0% 50%",
   },
   {
     title: "Obras Comerciais",
     description:
       "Empreendimentos comerciais de alto padrão, com gestão integrada de prazo, custo e qualidade do começo ao habite-se.",
     bullets: ["Retrofit e expansão", "Acabamentos premium", "Gestão completa"],
-    backgroundPosition: "0% 100%",
   },
 ];
 
@@ -85,51 +81,45 @@ export default function Services() {
             <motion.div
               key={service.title}
               variants={cardVariants}
-              className="relative overflow-hidden rounded-2xl border border-white/10"
-              style={{
-                backgroundImage: "url(/obras/zucchi-v4.webp)",
-                backgroundSize: "100% 300%",
-                backgroundPosition: service.backgroundPosition,
-                backgroundRepeat: "no-repeat",
-              }}
+              className="servico-card-bg relative overflow-hidden rounded-2xl border border-white/10"
             >
-              <div className="absolute inset-0 bg-black/70" />
+              <div className="absolute inset-0 z-10 hidden bg-black/70 lg:block" />
 
-              <div className="relative z-10 grid grid-cols-1 items-center gap-6 p-8 lg:grid-cols-[1.2fr_2fr_auto] lg:gap-10 lg:p-10">
-                <div>
-                  <h3 className="text-2xl font-bold tracking-tight text-bone lg:text-3xl">
-                    {service.title}
-                  </h3>
-                </div>
+              <div className="relative z-20 p-8 lg:p-10">
+                <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
+                  <div className="flex flex-col justify-center">
+                    <h3 className="text-2xl font-bold tracking-tight text-bone lg:text-3xl">
+                      {service.title}
+                    </h3>
+                    <p className="mt-4 text-base leading-relaxed text-neutral-300">
+                      {service.description}
+                    </p>
+                  </div>
 
-                <div>
-                  <p className="text-base leading-relaxed text-neutral-300">
-                    {service.description}
-                  </p>
-                </div>
+                  <div className="flex flex-col justify-between gap-6 lg:border-l lg:border-white/15 lg:pl-12">
+                    <ul className="space-y-3">
+                      {service.bullets.map((b) => (
+                        <li key={b} className="flex items-center gap-3">
+                          <Check
+                            size={16}
+                            strokeWidth={2}
+                            className="shrink-0 text-accent"
+                          />
+                          <span className="text-base text-neutral-200">{b}</span>
+                        </li>
+                      ))}
+                    </ul>
 
-                <div className="flex flex-col gap-5">
-                  <ul className="space-y-2">
-                    {service.bullets.map((b) => (
-                      <li key={b} className="flex items-center gap-2">
-                        <Check
-                          size={16}
-                          strokeWidth={2}
-                          className="shrink-0 text-accent"
-                        />
-                        <span className="whitespace-nowrap text-sm text-neutral-200">
-                          {b}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                  <a
-                    href="#contato"
-                    className="inline-flex items-center gap-2 whitespace-nowrap text-sm font-medium text-accent transition-all hover:gap-3 hover:text-accent-hover"
-                  >
-                    Saber mais
-                    <ArrowUpRight size={16} />
-                  </a>
+                    <div>
+                      <a
+                        href="#contato"
+                        className="inline-flex items-center gap-2 text-sm font-medium text-accent transition-all hover:gap-3 hover:text-accent-hover"
+                      >
+                        Saber mais
+                        <ArrowUpRight size={16} />
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </motion.div>
