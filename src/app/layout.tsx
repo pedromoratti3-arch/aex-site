@@ -75,6 +75,12 @@ export default function RootLayout({
           href="/hero-galpao-mobile.webp"
           media="(max-width: 768px)"
         />
+        <link
+          rel="preload"
+          as="image"
+          href="/obras/servicos-bg.webp"
+          media="(min-width: 1024px)"
+        />
       </head>
       <body className="bg-ink font-sans text-bone antialiased">
         <ScrollToTop />
