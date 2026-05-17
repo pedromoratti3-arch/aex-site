@@ -81,7 +81,7 @@ export default function Services() {
             <motion.div
               key={service.title}
               variants={cardVariants}
-              className="servico-card-bg relative overflow-hidden rounded-2xl border border-white/10"
+              className="servico-card-bg relative overflow-hidden rounded-2xl"
             >
               <div className="absolute inset-0 z-10 hidden bg-black/70 lg:block" />
 
@@ -96,21 +96,25 @@ export default function Services() {
                     </p>
                   </div>
 
-                  <div className="flex flex-col justify-between gap-6 lg:border-l lg:border-white/15 lg:pl-12">
-                    <ul className="space-y-3">
-                      {service.bullets.map((b) => (
-                        <li key={b} className="flex items-center gap-3">
-                          <Check
-                            size={16}
-                            strokeWidth={2}
-                            className="shrink-0 text-accent"
-                          />
-                          <span className="text-base text-neutral-200">{b}</span>
-                        </li>
-                      ))}
-                    </ul>
+                  <div className="flex flex-col lg:border-l lg:border-white/25 lg:pl-12">
+                    <div className="flex flex-1 items-center">
+                      <ul className="w-full space-y-3">
+                        {service.bullets.map((b) => (
+                          <li key={b} className="flex items-center gap-3">
+                            <Check
+                              size={16}
+                              strokeWidth={2}
+                              className="shrink-0 text-accent"
+                            />
+                            <span className="text-base text-neutral-200">
+                              {b}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
 
-                    <div>
+                    <div className="mt-6">
                       <a
                         href="#contato"
                         className="inline-flex items-center gap-2 text-sm font-medium text-accent transition-all hover:gap-3 hover:text-accent-hover"
