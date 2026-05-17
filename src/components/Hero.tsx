@@ -194,8 +194,8 @@ export default function Hero() {
             className="mt-6 max-w-2xl text-base text-steel-200 md:text-lg"
           >
             Engenharia de alta performance, do Espírito Santo para o Brasil.
-            Planejamento estratégico, metodologias modernas e execução sem
-            desvios — para obras de alta complexidade.
+            Planejamento estratégico, metodologias modernas e controle técnico
+            em obra — para obras de alta complexidade.
           </motion.p>
 
           <motion.div
