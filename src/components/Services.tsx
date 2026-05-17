@@ -36,7 +36,7 @@ const SERVICES: Service[] = [
   {
     title: "Galpões Logísticos",
     description:
-      "Estruturas de grande porte para operações de armazenagem e distribuição. Engenharia dimensionada para fluxo, carga e expansão.",
+      "Galpões para operações de armazenagem e distribuição. Engenharia dimensionada conforme o fluxo, a carga e o potencial de expansão da operação.",
     bullets: ["Estrutura metálica", "Pisos de alta resistência", "Docas e pátio"],
   },
   {
