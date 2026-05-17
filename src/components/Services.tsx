@@ -55,22 +55,99 @@ const SERVICES: Service[] = [
   },
 ];
 
+function ServiceCard({
+  service,
+  bgImageReady,
+}: {
+  service: Service;
+  bgImageReady: boolean;
+}) {
+  return (
+    <motion.div
+      variants={cardVariants}
+      className="relative overflow-hidden rounded-2xl bg-[#0F0F0F]"
+    >
+      <div
+        aria-hidden="true"
+        className={`servico-card-bg pointer-events-none absolute inset-0 hidden transition-opacity duration-700 lg:block ${
+          bgImageReady ? "opacity-100" : "opacity-0"
+        }`}
+      />
+
+      <div
+        aria-hidden="true"
+        className={`pointer-events-none absolute inset-0 z-10 hidden bg-black/70 transition-opacity duration-700 lg:block ${
+          bgImageReady ? "opacity-100" : "opacity-0"
+        }`}
+      />
+
+      <div className="relative z-20 p-8 lg:p-10">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
+          <div className="flex flex-col justify-center">
+            <h3 className="text-2xl font-bold tracking-tight text-bone lg:text-3xl">
+              {service.title}
+            </h3>
+            <p className="mt-4 text-base leading-relaxed text-neutral-300">
+              {service.description}
+            </p>
+          </div>
+
+          <div className="flex flex-col lg:border-l lg:border-white/25 lg:pl-12">
+            <div className="flex flex-1 items-center">
+              <ul className="w-full space-y-3">
+                {service.bullets.map((b) => (
+                  <li key={b} className="flex items-center gap-3">
+                    <Check
+                      size={16}
+                      strokeWidth={2}
+                      className="shrink-0 text-accent"
+                    />
+                    <span className="text-base text-neutral-200">{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="mt-6">
+              <a
+                href="#contato"
+                className="inline-flex items-center gap-2 text-sm font-medium text-accent transition-all hover:gap-3 hover:text-accent-hover"
+              >
+                Saber mais
+                <ArrowUpRight size={16} />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function Services() {
-  const [bgImageLoaded, setBgImageLoaded] = useState(false);
+  const [bgImageReady, setBgImageReady] = useState(false);
 
   useEffect(() => {
     const img = new window.Image();
     img.src = "/obras/servicos-bg.webp";
 
+    const onReady = () => {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setBgImageReady(true);
+        });
+      });
+    };
+
     if (img.decode) {
       img
         .decode()
-        .then(() => setBgImageLoaded(true))
+        .then(onReady)
         .catch(() => {
-          img.onload = () => setBgImageLoaded(true);
+          img.onload = onReady;
         });
     } else {
-      img.onload = () => setBgImageLoaded(true);
+      img.onload = onReady;
     }
   }, []);
 
@@ -97,57 +174,11 @@ export default function Services() {
           className="mt-12 space-y-3 lg:mt-16 lg:space-y-4"
         >
           {SERVICES.map((service) => (
-            <motion.div
+            <ServiceCard
               key={service.title}
-              variants={cardVariants}
-              className={`relative overflow-hidden rounded-2xl bg-[#0F0F0F] ${
-                bgImageLoaded ? "servico-card-bg" : ""
-              }`}
-            >
-              <div className="absolute inset-0 z-10 hidden bg-black/70 lg:block" />
-
-              <div className="relative z-20 p-8 lg:p-10">
-                <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
-                  <div className="flex flex-col justify-center">
-                    <h3 className="text-2xl font-bold tracking-tight text-bone lg:text-3xl">
-                      {service.title}
-                    </h3>
-                    <p className="mt-4 text-base leading-relaxed text-neutral-300">
-                      {service.description}
-                    </p>
-                  </div>
-
-                  <div className="flex flex-col lg:border-l lg:border-white/25 lg:pl-12">
-                    <div className="flex flex-1 items-center">
-                      <ul className="w-full space-y-3">
-                        {service.bullets.map((b) => (
-                          <li key={b} className="flex items-center gap-3">
-                            <Check
-                              size={16}
-                              strokeWidth={2}
-                              className="shrink-0 text-accent"
-                            />
-                            <span className="text-base text-neutral-200">
-                              {b}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div className="mt-6">
-                      <a
-                        href="#contato"
-                        className="inline-flex items-center gap-2 text-sm font-medium text-accent transition-all hover:gap-3 hover:text-accent-hover"
-                      >
-                        Saber mais
-                        <ArrowUpRight size={16} />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+              service={service}
+              bgImageReady={bgImageReady}
+            />
           ))}
         </motion.div>
       </div>
