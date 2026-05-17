@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Check } from "lucide-react";
 import FadeIn from "./FadeIn";
@@ -55,6 +56,24 @@ const SERVICES: Service[] = [
 ];
 
 export default function Services() {
+  const [bgImageLoaded, setBgImageLoaded] = useState(false);
+
+  useEffect(() => {
+    const img = new window.Image();
+    img.src = "/obras/servicos-bg.webp";
+
+    if (img.decode) {
+      img
+        .decode()
+        .then(() => setBgImageLoaded(true))
+        .catch(() => {
+          img.onload = () => setBgImageLoaded(true);
+        });
+    } else {
+      img.onload = () => setBgImageLoaded(true);
+    }
+  }, []);
+
   return (
     <section
       id="servicos"
@@ -81,7 +100,9 @@ export default function Services() {
             <motion.div
               key={service.title}
               variants={cardVariants}
-              className="servico-card-bg relative overflow-hidden rounded-2xl"
+              className={`relative overflow-hidden rounded-2xl bg-[#0F0F0F] ${
+                bgImageLoaded ? "servico-card-bg" : ""
+              }`}
             >
               <div className="absolute inset-0 z-10 hidden bg-black/70 lg:block" />
 
