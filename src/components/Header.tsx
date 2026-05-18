@@ -49,12 +49,44 @@ function Logo() {
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const sectionIds = ["sobre", "obras", "servicos", "contato"];
+    const observers: IntersectionObserver[] = [];
+
+    sectionIds.forEach((id) => {
+      const element = document.getElementById(id);
+      if (!element) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActiveSection(id);
+            }
+          });
+        },
+        {
+          rootMargin: "-30% 0px -50% 0px",
+          threshold: 0,
+        },
+      );
+
+      observer.observe(element);
+      observers.push(observer);
+    });
+
+    return () => {
+      observers.forEach((o) => o.disconnect());
+    };
   }, []);
 
   return (
@@ -71,16 +103,25 @@ export default function Header() {
 
         <div className="flex items-center gap-6">
           <nav className="hidden items-center gap-8 md:flex">
-            {NAV.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="group relative text-sm font-medium tracking-wide text-steel-200 transition-colors hover:text-bone"
-              >
-                {item.label}
-                <span className="absolute -bottom-1 left-0 h-px w-0 bg-accent transition-all duration-300 group-hover:w-full" />
-              </a>
-            ))}
+            {NAV.map((item) => {
+              const isActive = activeSection === item.href.slice(1);
+              return (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className={`group relative text-sm font-medium tracking-wide transition-colors ${
+                    isActive ? "text-bone" : "text-steel-200 hover:text-bone"
+                  }`}
+                >
+                  {item.label}
+                  <span
+                    className={`absolute -bottom-1 left-0 h-px bg-accent transition-all duration-300 ${
+                      isActive ? "w-full" : "w-0 group-hover:w-full"
+                    }`}
+                  />
+                </a>
+              );
+            })}
           </nav>
 
           <a
@@ -109,16 +150,23 @@ export default function Header() {
         }`}
       >
         <div className="container-aex flex flex-col gap-1 py-4">
-          {NAV.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              onClick={() => setOpen(false)}
-              className="rounded-sm px-2 py-3 text-sm text-steel-200 transition-colors hover:bg-white/5 hover:text-bone"
-            >
-              {item.label}
-            </a>
-          ))}
+          {NAV.map((item) => {
+            const isActive = activeSection === item.href.slice(1);
+            return (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={() => setOpen(false)}
+                className={`rounded-sm px-2 py-3 text-sm transition-colors ${
+                  isActive
+                    ? "text-bone"
+                    : "text-steel-200 hover:bg-white/5 hover:text-bone"
+                }`}
+              >
+                {item.label}
+              </a>
+            );
+          })}
           <a
             href="#contato"
             onClick={() => setOpen(false)}
