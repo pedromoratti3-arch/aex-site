@@ -59,33 +59,54 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    const sectionIds = ["sobre", "obras", "servicos", "contato"];
-    const observers: IntersectionObserver[] = [];
+    const allSectionIds = [
+      "hero",
+      "sobre",
+      "obras",
+      "servicos",
+      "processo",
+      "contato",
+    ];
+    const menuSectionIds = ["sobre", "obras", "servicos", "contato"];
 
-    sectionIds.forEach((id) => {
+    const sectionRatios: Record<string, number> = {};
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          sectionRatios[entry.target.id] = entry.intersectionRatio;
+        });
+
+        let maxRatio = 0;
+        let mostVisibleSection = "";
+
+        Object.entries(sectionRatios).forEach(([id, ratio]) => {
+          if (ratio > maxRatio) {
+            maxRatio = ratio;
+            mostVisibleSection = id;
+          }
+        });
+
+        if (menuSectionIds.includes(mostVisibleSection)) {
+          setActiveSection(mostVisibleSection);
+        } else {
+          setActiveSection("");
+        }
+      },
+      {
+        threshold: [0, 0.1, 0.25, 0.5, 0.75, 1],
+      },
+    );
+
+    allSectionIds.forEach((id) => {
       const element = document.getElementById(id);
-      if (!element) return;
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setActiveSection(id);
-            }
-          });
-        },
-        {
-          rootMargin: "-30% 0px -50% 0px",
-          threshold: 0,
-        },
-      );
-
-      observer.observe(element);
-      observers.push(observer);
+      if (element) {
+        observer.observe(element);
+      }
     });
 
     return () => {
-      observers.forEach((o) => o.disconnect());
+      observer.disconnect();
     };
   }, []);
 
